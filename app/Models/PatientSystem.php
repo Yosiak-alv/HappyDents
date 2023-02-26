@@ -9,4 +9,6 @@ class PatientSystem extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+
 }
