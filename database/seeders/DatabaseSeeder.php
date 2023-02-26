@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Factories\PatientSystemFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,11 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+       $this->call([
+           BranchOfficeSeeder::class,
+           PatientSeeder::class,
+           DetentionSeeder::class,
+           OdontogramSeeder::class,
+           DiagnosticSeeder::class,
+           HospitalizationSeeder::class,
+           SystemSeeder::class,
+           FamilyBackgroundSeeder::class,
+           TreatmentSeeder::class,
+           VisitSeeder::class,
+           PatientSystemFactory::class //da error , al hacerlo por separado si funciona
+       ]);
     }
 }
