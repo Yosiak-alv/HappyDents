@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('diagnostics', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->timestamps();
+            $table->foreignIdFor(\App\Models\Patient::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
+            $table->text('observation');
+            $table->text('diagnostic');
+            $table->timestamp('date')->useCurrent();
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('diagnostics');
     }
 };
