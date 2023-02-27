@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\BranchOffice;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\clinic\BranchOffice;
 use Illuminate\Database\Seeder;
 
 class BranchOfficeSeeder extends Seeder

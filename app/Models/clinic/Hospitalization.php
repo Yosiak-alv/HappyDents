@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\clinic;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Diagnostic extends Model
+class Hospitalization extends Model
 {
     use HasFactory;
     public $timestamps = false;
@@ -15,5 +15,4 @@ class Diagnostic extends Model
     {
         return $this->belongsTo(Patient::class);
     }
-
 }

@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Detention;
-use App\Models\Odontogram;
-use App\Models\Patient;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\clinic\Detention;
+use App\Models\clinic\Odontogram;
+use App\Models\clinic\Patient;
 use Illuminate\Database\Seeder;
 
 class OdontogramSeeder extends Seeder

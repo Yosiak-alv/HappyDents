@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Diagnostic>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\clinic\Diagnostic>
  */
 class DiagnosticFactory extends Factory
 {

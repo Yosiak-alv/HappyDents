@@ -2,11 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\PatientSystem;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PatientSystem>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\clinic\PatientSystem>
  */
 class PatientSystemFactory extends Factory
 {
@@ -18,7 +17,6 @@ class PatientSystemFactory extends Factory
     public function definition()
     {
         return [
-            'condition' => fake()->paragraph(2,true)
         ];
     }
 }

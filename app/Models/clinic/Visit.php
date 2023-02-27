@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\clinic;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class FamilyBackground extends Model
+class Visit extends Model
 {
     use HasFactory;
     public $timestamps = false;
@@ -14,7 +14,8 @@ class FamilyBackground extends Model
     public function patient():BelongsTo{
         return $this->belongsTo(Patient::class);
     }
-    public function system():BelongsTo{
-        return $this->belongsTo(System::class);
+    public function treatment():BelongsTo{
+        return $this->belongsTo(Treatment::class);
     }
+
 }
