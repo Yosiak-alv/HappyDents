@@ -1,13 +1,13 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\clinic;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\clinic\Detention>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\clinic\Odontogram>
  */
-class DetentionFactory extends Factory
+class OdontogramFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,6 @@ class DetentionFactory extends Factory
     public function definition()
     {
         return [
-            'name' =>fake()->word()
         ];
     }
 }

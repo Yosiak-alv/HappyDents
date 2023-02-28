@@ -1,13 +1,13 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\clinic;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\clinic\Hospitalization>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\clinic\PatientSystem>
  */
-class HospitalizationFactory extends Factory
+class PatientSystemFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,6 @@ class HospitalizationFactory extends Factory
     public function definition()
     {
         return [
-            'reason' => fake()->paragraph(4,true),
-
         ];
     }
 }
