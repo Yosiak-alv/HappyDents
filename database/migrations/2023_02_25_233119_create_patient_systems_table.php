@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('patient_systems', function (Blueprint $table) {
-            $table->foreignIdFor(\App\Models\Patient::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
-            $table->foreignIdFor(\App\Models\System::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
-            $table->text('condition');
+            $table->foreignIdFor(\App\Models\clinic\Patient::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignIdFor(\App\Models\clinic\System::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
         });
     }
 

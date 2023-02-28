@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Detention;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\clinic\Detention;
 use Illuminate\Database\Seeder;
 
 class DetentionSeeder extends Seeder

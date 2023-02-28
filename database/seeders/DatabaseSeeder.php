@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Factories\PatientSystemFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,7 +25,7 @@ class DatabaseSeeder extends Seeder
            FamilyBackgroundSeeder::class,
            TreatmentSeeder::class,
            VisitSeeder::class,
-           PatientSystemFactory::class //da error , al hacerlo por separado si funciona
+           PatientSystemSeeder::class //da error , al hacerlo por separado si funciona
        ]);
     }
 }

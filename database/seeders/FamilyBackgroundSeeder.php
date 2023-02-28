@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\FamilyBackground;
-use App\Models\Patient;
-use App\Models\System;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\clinic\FamilyBackground;
+use App\Models\clinic\Patient;
+use App\Models\clinic\System;
 use Illuminate\Database\Seeder;
 
 class FamilyBackgroundSeeder extends Seeder

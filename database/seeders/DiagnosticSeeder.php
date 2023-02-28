@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Diagnostic;
-use App\Models\Patient;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\clinic\Diagnostic;
+use App\Models\clinic\Patient;
 use Illuminate\Database\Seeder;
 
 class DiagnosticSeeder extends Seeder

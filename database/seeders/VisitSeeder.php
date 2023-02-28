@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Patient;
-use App\Models\System;
-use App\Models\Treatment;
-use App\Models\Visit;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\clinic\Patient;
+use App\Models\clinic\Treatment;
+use App\Models\clinic\Visit;
 use Illuminate\Database\Seeder;
 
 class VisitSeeder extends Seeder

@@ -1,12 +1,20 @@
-<template>
-    <h1>Hola prueba</h1>
-</template>
 
+<script setup>
+//import GuestLayout from "@/Layouts/GuestLayout.vue";
+//import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+</script>
 <script>
-export default {
-    name: "Home"
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+export  default {
+    layout: AuthenticatedLayout
 }
 </script>
+<template>
+    hola
+
+</template>
+
+
 
 <style scoped>
 

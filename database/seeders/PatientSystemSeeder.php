@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Patient;
-use App\Models\PatientSystem;
-use App\Models\System;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\clinic\Patient;
+use App\Models\clinic\PatientSystem;
+use App\Models\clinic\System;
 use Illuminate\Database\Seeder;
 
 class PatientSystemSeeder extends Seeder

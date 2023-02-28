@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\System;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\clinic\System;
 use Illuminate\Database\Seeder;
 
 class SystemSeeder extends Seeder

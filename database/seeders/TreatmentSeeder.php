@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Treatment;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\clinic\Treatment;
 use Illuminate\Database\Seeder;
 
 class TreatmentSeeder extends Seeder
