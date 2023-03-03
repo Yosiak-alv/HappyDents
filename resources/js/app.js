@@ -1,14 +1,16 @@
-import { createApp, h } from 'vue'
-import { createInertiaApp } from '@inertiajs/vue3'
 
-createInertiaApp({
-  resolve: name => {
-    const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
-    return pages[`./Pages/${name}.vue`]
-  },
-  setup({ el, App, props, plugin }) {
-    createApp({ render: () => h(App, props) })
-      .use(plugin)
-      .mount(el)
-  },
-})
+import {createApp} from "vue";
+import Welcome from "./Welcome.vue";
+import Registro from "./Registro.vue"
+import Antecedente from "./Antecedente.vue";
+import Hosp from "./Hosp.vue"
+import Diagn from "./Diagn.vue"
+import Odontograma from "./Odontograma.vue"
+
+createApp(Welcome).mount("#app");
+createApp(Registro).mount("#registro");
+createApp(Antecedente).mount('#antecedente');
+createApp(Hosp).mount("#hosp");
+createApp(Diagn).mount("#diagn");
+createApp(Odontograma).mount("#odontograma");
+""

@@ -1,0 +1,109 @@
+/* Primary colors */
+:root {
+    --primary: #3ac9d6;
+    --primary-light: #84d8de;
+    --primary-dark: #288d96;
+  }
+
+  /* Secondary colors */
+  :root {
+    --secondary: #fff;
+    --secondary-light: #f2f2f2;
+    --secondary-dark: #ddd;
+  }
+
+  /* Text colors */
+  :root {
+    --text-primary: #212121;
+    --text-secondary: #757575;
+  }
+
+  /* Fonts */
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+
+  /* Global styles */
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-primary);
+    background-color: var(--secondary);
+  }
+
+  a {
+    color: var(--primary-dark);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .header {
+    background-color: var(--primary);
+    color: var(--secondary);
+  }
+
+  .logo img {
+    height: 50px;
+  }
+
+  .navbar-nav .nav-item {
+    margin-right: 15px;
+  }
+
+  .main {
+    padding: 80px 0;
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    img {
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .footer {
+    background-color: var(--secondary-dark);
+    color: var(--secondary-light);
+    padding: 30px 0;
+
+    p {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    ul.list-inline {
+      margin-bottom: 0;
+
+      li.list-inline-item {
+        margin-right: 10px;
+
+        a {
+          color: var(--secondary-light);
+          font-size: 16px;
+
+          &:hover {
+            color: var(--secondary);
+          }
+        }
+      }
+    }
+  }
