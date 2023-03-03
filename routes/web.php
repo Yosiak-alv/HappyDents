@@ -15,9 +15,14 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/xd',function (){
-   return Inertia::render('Home');
+Route::middleware('auth')->group(function (){
+   Route::get('/pacients',function ()
+   {
+       return Inertia::render('Clinic/Pacients/Index');
+   })->name('pacients.index');
 });
+
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
