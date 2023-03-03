@@ -18,24 +18,24 @@ use Inertia\Inertia;
 
 
 Route::get('admin/home', function () {
-    return Inertia::render('home');
+    return Inertia::render('Homepage');
 });
 
 Route::get('admin/registro', function () {
-    return view('registro');
+   return Inertia::render('Registro');
 });
 Route::get('admin/antecedente', function () {
-    return view('antecedente');
+    return Inertia::render('Antecedente');
 });
 Route::get('admin/hosp', function () {
-    return view('hosp');
+    return Inertia::render('Hosp');
 });
 Route::get('admin/diagn', function () {
-    return view('diagn');
+    return Inertia::render('Diagn');
 });
-Route::get('admin/odontograma', function () {
-    return view('odontograma');
-
+/*Route::get('admin/odontograma', function () {
+    return Inertia::render('Odontograma');
+});*/
 Route::get('/xd',function (){
    return Inertia::render('Home');
 
