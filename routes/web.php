@@ -16,6 +16,9 @@ use Inertia\Inertia;
 |
 */
 
+Route::post('postTest', function () {
+    return request();
+})->name('post.test');
 
 Route::get('admin/home', function () {
     return Inertia::render('Homepage');
@@ -33,9 +36,9 @@ Route::get('admin/hosp', function () {
 Route::get('admin/diagn', function () {
     return Inertia::render('Diagn');
 });
-/*Route::get('admin/odontograma', function () {
+Route::get('admin/odontograma', function () {
     return Inertia::render('Odontograma');
-});*/
+});
 Route::get('/xd',function (){
    return Inertia::render('Home');
 

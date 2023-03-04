@@ -10,10 +10,11 @@
         </div>
     </header>
 
-    <div class="container" style="padding-top: 80px;">
-        <div class="    align-items-center justify-content-center" style="min-height: calc(100vh - 80px);">
+    <div class="d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 80px); padding-top: 80px;">
+        <div class="container">
             <div class="row py-3">
-                <slot />
+
+                    <slot />
             </div>
         </div>
 

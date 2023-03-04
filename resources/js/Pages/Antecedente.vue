@@ -47,13 +47,15 @@
     </Layout>
 
 </template>
+<script setup>
 
 
+
+</script>
 
 
 <script generic>
 import { useForm } from '@inertiajs/inertia-vue3';
-
 import { defineComponent } from 'vue'
 export default {
     setup() {
