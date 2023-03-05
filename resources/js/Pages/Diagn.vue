@@ -1,143 +1,116 @@
 <template>
-    <div class="form-container">
-       <form>
-         <div class="form-group">
-             <div class="card-header bg-primary text-white">Diagnóstico del paciente</div>
-           <label for="codigo-paciente">Código Paciente</label>
-           <input class="id-paciente" type="text" id="codigo-paciente" v-model="form.codigoPaciente" />
-         </div>
+    <Layout>
+        <template #menu>
+            <a href="registro" class="mx-3">Registrar pacientes</a>
+            <a href="#" class="mx-3">Buscar registro</a>
+            <a href="#" class="mx-3">Visitas</a>
+        </template>
+    <div class="col-12 text-center">
+        <div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-primary text-white">Diagnóstico de paciente</div>
+            <div class="card-body text-center d-flex justify-content-center">
+                <form @submit.prevent="submit">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label for="codigo-paciente" class="form-label">Código paciente:</label>
+                                <input type="text" class="form-control" id="codigo-paciente" v-model="codigoPaciente">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="condicion">Observaciones:</label>
+                                    <input type="text" class="form-control" id="condicion" name="observaciones"
+                                        v-model="form.observations">
+                                </div>
+                                <div class="form-group">
+                                    <label for="parentesco">Diagnóstico:</label>
+                                    <input type="text" class="form-control" id="parentesco" name="diagnostico"
+                                        v-model="form.diagnostic">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                                <label for="fecha_diagnostico">Fecha de diagnóstico:</label>
+                                                <input type="date" class="form-control" id="fecha_diagnostico"
+                                                    name="birthdate" v-model="form.date">
+                                        </div>
+                            <div class="form-group mt-4">
+                                        <button class="btn btn-primary" type="submit">Guardar</button>
+                                        <a href="registro" class="btn btn-secondary mx-3" type="reset">Cancelar</a>
+                                        <a href="home" class="btn btn-primary" @click="siguiente()">Terminar</a>
+                                    </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </Layout>
+</template>
 
-         <div class="form-group-id">
-           <label for="observaciones">Observaciones</label>
-           <input type="text" id="observaciones" v-model="form.ovservaciones" />
-         </div>
-         <div class="form-group-id">
-           <label for="diagnostico">Diagnóstico</label>
-           <input type="text" id="diagnostico" v-model="form.diagnostico" />
-         </div>
-         <div class="button-group">
-           <button type="submit" class="btn btn-primary">Guardar</button>
-           <a href="home" type="cancelar" class="btn btn-secondary">Regresar a menú</a>
 
-         </div>
-       </form>
-     </div>
- </template>
 
-<script>
- import { useForm } from '@inertiajs/inertia-vue3';
 
-export default {
-  setup() {
-    const { data: form, post } = useForm({
-      codigoPaciente: '',
-      sistemaAfectado: '',
-      condicion: '',
-      parentesco: '',
+
+<script setup>
+import { useForm } from '@inertiajs/inertia-vue3';
+import { defineComponent } from 'vue';
+import Layout from "@/Layouts/HappyDentsLayout.vue";
+
+const form = useForm({
+    'observations': '',
+    'diagnostic': '',
+    'date': '',
+
+});
+
+const submit = () => {
+    form.post(route('post.test'), {
+        onSuccess: () => form.reset('direccion'),
     });
-
-    function submitForm() {
-      post(route('submit-patient-form'), form);
-    }
-
-    function goToNextPage() {
-      // navigate to the next page using the Vue Router
-    }
-
-    return {
-      form,
-      submitForm,
-      goToNextPage,
-    };
-  },
 };
 </script>
 
 <style scoped>
-.form-container {
-  max-width: 600px;
-  margin: 0 auto;
-  margin-top: 50px;
+.container-fluid {
+    margin-top: 50px;
 }
 
-.form-group {
-  margin-bottom: 1rem;
+.card {
+    margin-top: 20px;
 }
 
-label {
-  display: block;
-  margin-bottom: 0.5rem;
+.card-header {
+    font-size: 1.25rem;
 }
 
-
-#codigo-paciente{
-    width: 25%;
-}
-
-input[type="text"],
-select {
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-input[type="text"]:focus,
-select:focus {
-  outline: none;
-  border-color: #80bdff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-.button-group {
-  margin-top: 1rem;
+.form-control {
+    font-size: 1.2rem;
 }
 
 .btn {
-  display: inline-block;
-  font-weight: 400;
-  color: #212529;
-  text-align: center;
-  vertical-align: middle;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  background-color: #f8f9fa;
-  border: 1px solid #f8f9fa;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 0.25rem;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  cursor: pointer;
+    font-size: 1.2rem;
+    margin-top: 10px;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+    background-color: #008CBA;
+    border-color: #008CBA;
 }
 
 .btn-primary:hover {
-  color: #fff;
-  background-color: #0069d9;
-  border-color: #0062cc;
+    background-color: #006D8B;
+    border-color: #006D8B;
 }
 
 .btn-secondary {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
+    background-color: #6c757d;
+    border-color: #6c757d;
 }
 
 .btn-secondary:hover {
-  color: #fff;
-  background-color: #5a6268;
-  border-color: #545b62;
+    background-color: #5a6268;
+    border-color: #545b62;
 }
-
 </style>

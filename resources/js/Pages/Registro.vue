@@ -49,7 +49,7 @@
                                         <div class="form-group">
                                                 <label for="fecha_nacimiento">Fecha de nacimiento:</label>
                                                 <input type="date" class="form-control" id="fecha_nacimiento"
-                                                    name="birthdate">
+                                                    name="birthdate" v-model="form.birthdate">
                                         </div>
                                     </div>
                                     <div class="col-5 offset-2">
