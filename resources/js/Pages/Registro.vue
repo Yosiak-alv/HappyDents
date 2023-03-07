@@ -18,6 +18,10 @@
                                             <label for="codigo-paciente" class="form-label">Código paciente:</label>
                                             <input type="text" class="form-control" id="codigo-paciente" v-model="codigoPaciente">
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="codigo-paciente" class="form-label">DUI:</label>
+                                            <input type="text" class="form-control" id="dui" v-model="form.dui">
+                                        </div>
                                         <div class="form-row">
                                             <div class="form-group">
                                                 <label for="nombre">Nombre:</label>
@@ -105,6 +109,7 @@ import Layout from "@/Layouts/HappyDentsLayout.vue";
 import {useForm} from '@inertiajs/vue3';
 
 const form = useForm({
+    'dui':'',
     'name': '',
     'lastname': '',
     'genre': '',
