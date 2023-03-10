@@ -2,6 +2,7 @@
 
 namespace Database\Factories\clinic;
 
+use App\Models\clinic\Patient;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,7 +17,9 @@ class DiagnosticFactory extends Factory
      */
     public function definition()
     {
+        $patient = Patient::inRandomOrder()->limit(1)->first();
         return [
+            'patient_id' => $patient->id,
             'observation' =>fake()->paragraph(2,true),
             'diagnostic' => fake()->paragraph(2,true)
         ];

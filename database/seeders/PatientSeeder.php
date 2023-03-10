@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\clinic\BranchOffice;
+use App\Models\clinic\Detention;
 use App\Models\clinic\Patient;
+use App\Models\clinic\System;
 use Illuminate\Database\Seeder;
 
 class PatientSeeder extends Seeder
@@ -15,9 +16,17 @@ class PatientSeeder extends Seeder
      */
     public function run()
     {
-        $branches = BranchOffice::all(['id']);
-        Patient::factory(25)->sequence(fn($sqn) =>[
-            'branch_office_id' => $branches->random()
-        ])->create();
+        $dententions = Detention::select(['id'])->get(); //odontograma
+        $patient_systems = System::select(['id'])->get(); //sistema paciente
+
+        Patient::factory(10)->create()->each(function($patient) use ($dententions,$patient_systems){
+            foreach($dententions->random(rand(1,$dententions->count())) as $dentention){
+                $patient->detentions()->attach($dentention);
+            }
+
+            foreach($patient_systems->random(rand(1,$patient_systems->count())) as $patient_system){
+                $patient->systems()->attach($patient_system);
+            }
+        });
     }
 }

@@ -15,17 +15,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
        $this->call([
-           BranchOfficeSeeder::class,
-           PatientSeeder::class,
-           DetentionSeeder::class,
-           OdontogramSeeder::class,
-           DiagnosticSeeder::class,
-           HospitalizationSeeder::class,
-           SystemSeeder::class,
-           FamilyBackgroundSeeder::class,
-           TreatmentSeeder::class,
-           VisitSeeder::class,
-           PatientSystemSeeder::class //da error , al hacerlo por separado si funciona
+            BranchOfficeSeeder::class,
+            DetentionSeeder::class,
+            TreatmentSeeder::class,
+            SystemSeeder::class,
+
+            PatientSeeder::class,
+            DiagnosticSeeder::class,
+            HospitalizationSeeder::class,
+            
+            FamilyBackgroundSeeder::class,
+            VisitSeeder::class,
        ]);
     }
 }

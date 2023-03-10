@@ -2,6 +2,7 @@
 
 namespace Database\Factories\clinic;
 
+use App\Models\clinic\BranchOffice;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,9 @@ class PatientFactory extends Factory
      */
     public function definition()
     {
+        $branch = BranchOffice::inRandomOrder()->limit(1)->first();
         return [
-            'Dui' => fake()->unique()->asciify('*********'),
+            'dui' => fake()->unique()->numerify('########-#'),
             'name' => fake()->name(),
             'lastname' => fake()->lastName(),
             'genre' => fake()->randomElement(['Mujer','Hombre']),
@@ -27,6 +29,7 @@ class PatientFactory extends Factory
             'address' => fake()->streetAddress(),
             'occupation' => fake()->word(),
             'birthdate' => fake()->date(),
+            'branch_office_id' => $branch->id,
             'contact_name' =>fake()->name(),
             'contact_phone' =>fake()->phoneNumber(),
             'contact_email' =>fake()->freeEmail()

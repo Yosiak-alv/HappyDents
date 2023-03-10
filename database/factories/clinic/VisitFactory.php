@@ -2,6 +2,8 @@
 
 namespace Database\Factories\clinic;
 
+use App\Models\clinic\Patient;
+use App\Models\clinic\Treatment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,12 @@ class VisitFactory extends Factory
      */
     public function definition()
     {
+        $patient = Patient::inRandomOrder()->limit(1)->first();
+        $treatment = Treatment::inRandomOrder()->limit(1)->first();
         return [
-            'payment' => fake()->randomFloat()
+            'patient_id' => $patient->id,
+            'treatment_id' =>$treatment->id,
+            'payment' => fake()->randomFloat(2,5,500)
         ];
     }
 }

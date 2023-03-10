@@ -15,9 +15,6 @@ class HospitalizationSeeder extends Seeder
      */
     public function run()
     {
-        Hospitalization::factory(10)->sequence(fn($sqn) => [
-            'patient_id' => Patient::all(['id'])->random(),
-
-        ])->create();
+        Hospitalization::factory(10)->create();
     }
 }

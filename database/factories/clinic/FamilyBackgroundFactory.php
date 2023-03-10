@@ -2,6 +2,8 @@
 
 namespace Database\Factories\clinic;
 
+use App\Models\clinic\Patient;
+use App\Models\clinic\System;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,7 +18,11 @@ class FamilyBackgroundFactory extends Factory
      */
     public function definition()
     {
+        $patient = Patient::inRandomOrder()->limit(1)->first();
+        $system = System::inRandomOrder()->limit(1)->first();
         return [
+            'patient_id' => $patient->id,
+            'system_id' => $system->id,
             'relationship' => fake()->word(),
             'condition' => fake()->paragraph(2,true)
         ];

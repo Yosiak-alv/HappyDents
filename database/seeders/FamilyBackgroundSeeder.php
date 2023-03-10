@@ -16,9 +16,6 @@ class FamilyBackgroundSeeder extends Seeder
      */
     public function run()
     {
-        FamilyBackground::factory(10)->sequence(fn($sqn) => [
-            'patient_id' => Patient::all(['id'])->random(),
-            'system_id' => System::all(['id'])->random()
-        ])->create();
+        FamilyBackground::factory(20)->create();
     }
 }

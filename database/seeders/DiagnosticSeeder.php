@@ -15,8 +15,6 @@ class DiagnosticSeeder extends Seeder
      */
     public function run()
     {
-        Diagnostic::factory(25)->sequence(fn($sqn) =>[
-            'patient_id' => Patient::all(['id'])->random()
-        ])->create();
+        Diagnostic::factory(15)->create();
     }
 }
