@@ -17,7 +17,7 @@ class Patient extends Model
     {
         return $this->belongsTo(BranchOffice::class,'branch_office_id');
     }
-    public function dententions() : BelongsToMany
+    public function detentions() : BelongsToMany
     {
         return $this->belongsToMany(Detention::class,'odontograms');
     }
