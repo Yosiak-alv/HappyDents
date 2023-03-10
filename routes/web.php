@@ -15,11 +15,33 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware('auth')->group(function (){
-   Route::get('/pacients',function ()
-   {
-       return Inertia::render('Clinic/Pacients/Index');
-   })->name('pacients.index');
+
+Route::post('postTest', function () {
+    return request();
+})->name('post.test');
+
+Route::get('admin/home', function () {
+    return Inertia::render('Homepage');
+});
+
+Route::get('admin/registro', function () {
+   return Inertia::render('Registro');
+});
+Route::get('admin/antecedente', function () {
+    return Inertia::render('Antecedente');
+});
+Route::get('admin/hosp', function () {
+    return Inertia::render('Hosp');
+});
+Route::get('admin/diagn', function () {
+    return Inertia::render('Diagn');
+});
+Route::get('admin/odontograma', function () {
+    return Inertia::render('Odontograma');
+});
+Route::get('/xd',function (){
+   return Inertia::render('Home');
+
 });
 
 
