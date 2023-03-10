@@ -16,9 +16,6 @@ class VisitSeeder extends Seeder
      */
     public function run()
     {
-        Visit::factory(20)->sequence(fn($sqn) =>[
-            'patient_id' => Patient::all(['id'])->random(),
-            'treatment_id' => Treatment::all(['id'])->random()
-        ])->create();
+        Visit::factory(20)->create();
     }
 }

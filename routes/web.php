@@ -43,6 +43,8 @@ Route::get('/xd',function (){
    return Inertia::render('Home');
 
 });
+
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),

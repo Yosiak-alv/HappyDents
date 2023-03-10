@@ -14,6 +14,6 @@ class DetentionSeeder extends Seeder
      */
     public function run()
     {
-        Detention::factory(20)->create();
+        Detention::factory(5)->create();
     }
 }
