@@ -13,6 +13,18 @@ class Patient extends Model
     use HasFactory;
     public $timestamps = false;
 
+    //los filtros 
+    public function scopeFilter($query, Array $filters){
+        $query->when($filters['search'] ?? false, function( $query, $search){
+            $query->where(fn($query) =>
+            $query->where('name','like','%'.$search.'%')
+                ->orWhere('lastname','like','%'.$search.'%')
+                ->orWhere('dui','like','%'.$search.'%')
+
+            );
+        });
+    }
+
     public function branch_office(): belongsTo
     {
         return $this->belongsTo(BranchOffice::class,'branch_office_id');
