@@ -1,11 +1,5 @@
 <template>
     <Layout>
-        <template #menu>
-            <a href="registro" class="mx-3">Registrar pacientes</a>
-            <a href="#" class="mx-3">Buscar registro</a>
-            <a href="#" class="mx-3">Visitas</a>
-        </template>
-
         <div class="col-md-6">
             <img src="/img/dents home.jpg" alt="Happy Dents Clinic" class="img-fluid"/>
         </div>
@@ -32,4 +26,11 @@
 
 <script setup>
 import Layout from "@/Layouts/HappyDentsLayout.vue";
+import {Head, router, Link} from '@inertiajs/vue3';
+import TextInput from "@/Components/TextInput.vue";
+import {ref, watch} from "vue";
+import {debounce} from "lodash";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 </script>
