@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\clinic\Patient::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->text('observation');
             $table->text('diagnostic');
-            $table->timestamp('date')->useCurrent();
+            $table->date('date')->nullable()->default(date("Y-m-d"));
         });
     }
 
