@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\clinic\Patient::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->foreignIdFor(\App\Models\clinic\Treatment::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->double('payment');
-            $table->timestamp('date')->useCurrent();
+            $table->timestamp('date')->nullable()->useCurrent();
         });
     }
 
