@@ -64,9 +64,9 @@ watch(search, debounce(value => {
                                     <td>{{patient.dui}}</td>
                                     <td>{{patient.phone}}</td>
                                     <td>
-                                        <Link :href="route('pacientes.show',patient.id)" as="button" method="get" class="btn btn-outline-success">Ver mas</Link>
+                                        <Link :href="route('pacientes.show',patient.id)" as="button" method="get" class="btn btn-outline-success">Ver más</Link>
                                     </td>
-                                
+
                                 </tr>
                             </tbody>
                         </table>
@@ -76,8 +76,8 @@ watch(search, debounce(value => {
                         <Paginator :links="patients.links"/>
                     </div>
                 </div>
-                
-                
+
+
             </div>
         </div>
     </HappyDentsLayout>
