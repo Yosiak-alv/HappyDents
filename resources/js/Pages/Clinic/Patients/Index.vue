@@ -53,7 +53,7 @@ watch(search, debounce(value => {
                                     <th scope="col">Nombres</th>
                                     <th scope="col">Apellidos</th>
                                     <th scope="col">DUI</th>
-                                    <th scope="col">Telefono</th>
+                                    <th scope="col">Teléfono</th>
                                     <th scope="col">Opciones</th>
                                 </tr>
                             </thead>
