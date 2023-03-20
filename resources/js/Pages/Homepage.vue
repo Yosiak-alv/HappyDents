@@ -6,12 +6,12 @@
         <div class="col-md-6">
             <h1>Happy Dents</h1>
             <p>
-                We are a modern dental clinic located in the heart of the
-                city. Our experienced dentists and friendly staff provide
-                high-quality dental services for patients of all ages.
-                Whether you need a routine check-up, a filling, or a
-                cosmetic procedure, we are here to help you achieve a
-                healthy and beautiful smile.
+                Somos una moderna clínica dental ubicada en el corazón de la
+                 ciudad. Nuestros dentistas experimentados y nuestro amable personal brindan
+                 servicios dentales de alta calidad para pacientes de todas las edades.
+                 Ya sea que necesite un chequeo de rutina, un empaste o una
+                 procedimiento cosmético, estamos aquí para ayudarle a lograr un
+                 sonrisa saludable y hermosa.
             </p>
         </div>
 
