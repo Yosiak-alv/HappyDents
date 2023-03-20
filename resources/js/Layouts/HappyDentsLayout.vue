@@ -5,7 +5,7 @@
             <Link :href="route('home')">
                 <img src="/img/dents logo.png" class="d-inline-block" alt="Happy Dents" style="height: 80px;">
             </Link>
-            
+
             <!--NavBAR-->
             <div class="col-md-6">
                 <div class="row">
@@ -15,9 +15,6 @@
                         </div>
                     </div>
                     <div class="col-2">
-                        <div class="fs-5">
-                            asdasd
-                        </div>
                     </div>
                 </div>
             </div>
