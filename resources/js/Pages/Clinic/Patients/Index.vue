@@ -31,8 +31,8 @@ watch(search, debounce(value => {
     <HappyDentsLayout>
         <Head title="Pacientes"/>
         <div class="container">
-            <div class="row py-2 ">
-                <div class="p-5 bg-light border rounded-3">
+            <div class="row py-2  ">
+                <div class="p-5 bg-blue-200  border rounded-3">
                     <div class="col-md-10 offset-md-1 ">
                         <h1 class="h1">Pacientes</h1>
                     </div>
@@ -46,7 +46,7 @@ watch(search, debounce(value => {
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-10 offset-md-1 ">
+                    <div class="col-md-10 offset-md-1 bg-white">
                         <table class="table mt-3">
                             <thead>
                                 <tr>

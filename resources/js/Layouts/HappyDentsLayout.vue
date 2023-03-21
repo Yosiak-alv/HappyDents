@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-2">
                         <div class="fs-5 ">
-                            <Link :href="route('pacientes.index')">Revisar Pacientes</Link>
+                            <Link :href="route('pacientes.index')">Pacientes</Link>
                         </div>
                     </div>
                     <div class="col-2">

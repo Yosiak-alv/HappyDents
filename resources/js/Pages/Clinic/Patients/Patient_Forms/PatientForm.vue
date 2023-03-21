@@ -1,9 +1,9 @@
 <script setup>
-    import { Link} from '@inertiajs/vue3';  
+    import { Link} from '@inertiajs/vue3';
     //import InputLabel from "@/Components/InputLabel.vue";
     //import InputError from '@/Components/InputError.vue';
     //import PrimaryButton from '@/Components/PrimaryButton.vue';
-    import InputError from "@/Components/InputError.vue";    
+    import InputError from "@/Components/InputError.vue";
     defineProps({
         form: {
             type: Object,
@@ -18,13 +18,13 @@
             type:Object,
             required:true
         }
-        
+
     });
     defineEmits(['submit.prevent']);
 </script>
 <template>
-    <div class="container">
-        <div class="row">
+    <div class="container bg-blue-200 border rounded-3">
+        <div class="row mt-2">
             <header>
                 <h2 class="h3">{{ updating ? 'Editar Paciente' : 'Crear nuevo Paciente' }}</h2>
                 <p class="p">
@@ -32,7 +32,7 @@
                 </p>
             </header>
             <form @submit.prevent="$emit('submit.prevent')" class="mt-4">
-                <div class="row">
+                <div class="row ">
                     <div class="col-md-6 ">
                         <div class="mb-3">
                             <label for="dui" class="form-label">Dui*</label>
@@ -52,9 +52,9 @@
                         <div class="mb-3">
                             <label for="genre" class="form-label">Genero*</label>
                             <select
-                                id="genre" 
-                                class="form-select rounded" 
-                                v-model="form.genre" 
+                                id="genre"
+                                class="form-select rounded"
+                                v-model="form.genre"
                                 required
                             >
                                 <option  v-for="value in [{'id':'Hombre','name':'Hombre'},{'id':'Mujer','name':'Mujer'}]" :value="value.id">
@@ -66,9 +66,9 @@
                         <div class="mb-3">
                             <label for="branch_office_id" class="form-label">Sucursal*</label>
                             <select
-                                id="branch_office_id" 
-                                class="form-select rounded" 
-                                v-model="form.branch_office_id" 
+                                id="branch_office_id"
+                                class="form-select rounded"
+                                v-model="form.branch_office_id"
                                 required
                             >
                                 <option  v-for="value in branch_offices" :value="value.id">
@@ -87,9 +87,9 @@
                             <input v-model="form.phone" type="text" class="form-control rounded" id="phone" required>
                             <InputError class="mt-2" :message="form.errors.phone" />
                         </div>
-                        
+
                     </div>
-                    
+
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="second_phone" class="form-label">Telefono Secundario</label>
@@ -99,7 +99,7 @@
                         <div class="mb-3">
                             <label for="address" class="form-label">Direccion*</label>
                             <textarea id="address"
-                                class="form-control rounded" 
+                                class="form-control rounded"
                                 v-model="form.address"
                                 required
                             ></textarea>
@@ -112,7 +112,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="birthdate" class="form-label">Fecha de Nacimiento*</label>
-                            <input type="date" id="birthdate" 
+                            <input type="date" id="birthdate"
                                 class="form-control rounded"
                             v-model="form.birthdate">
                             <InputError class="mt-2" :message="form.errors.birthdate" />
@@ -131,16 +131,16 @@
                             <label for="contact_email" class="form-label">Correo de Contacto</label>
                             <input v-model="form.contact_email" type="text" class="form-control rounded" id="contact_email">
                             <InputError class="mt-2" :message="form.errors.contact_email" />
-                        </div>            
+                        </div>
 
                     </div>
 
                     <div class="col-12 text-right">
-                        <button class="btn btn-primary mt-3" :disabled="form.processing">{{ updating ? 'Actualizar' : 'Crear' }}</button>
+                        <button class="btn btn-primary mt-3 mb-3" :disabled="form.processing">{{ updating ? 'Actualizar' : 'Crear' }}</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    
+
 </template>

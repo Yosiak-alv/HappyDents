@@ -1,9 +1,9 @@
 <script setup>
-    //import { Link} from '@inertiajs/vue3';  
+    //import { Link} from '@inertiajs/vue3';
     //import InputLabel from "@/Components/InputLabel.vue";
     //import InputError from '@/Components/InputError.vue';
     //import PrimaryButton from '@/Components/PrimaryButton.vue';
-    import InputError from "@/Components/InputError.vue";    
+    import InputError from "@/Components/InputError.vue";
     defineProps({
         form: {
             type: Object,
@@ -36,9 +36,9 @@
                     <div class="mb-3">
                         <label for="treatment_id" class="form-label">Tratamiento</label>
                             <select
-                                id="treatment_id" 
-                                class="form-select rounded" 
-                                v-model="form.treatment_id" 
+                                id="treatment_id"
+                                class="form-select rounded"
+                                v-model="form.treatment_id"
                                 required
                             >
                                 <option  v-for="value in treatments" :value="value.id">
@@ -50,7 +50,7 @@
                     <div class="mb-3">
                         <label for="payment" class="form-label">Pago</label>
                         <input type="number" id="payment" min="0"  step=".01"
-                            class="form-control rounded" 
+                            class="form-control rounded"
                             v-model="form.payment"
                             required
                         >
@@ -58,11 +58,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="date" class="form-label">Fecha</label>
-                        <input type="date-time" id="date"  
-                            class="form-control rounded" 
-                            v-model="form.date"
-                            required
-                        >
+                        <input type="date" id="date"
+                                class="form-control rounded"
+                            v-model="form.date" required>
                         <InputError class="mt-2" :message="form.errors.date" />
                     </div>
                     <div class="col-12 text-right">
@@ -72,5 +70,5 @@
             </form>
         </div>
     </div>
-    
+
 </template>
