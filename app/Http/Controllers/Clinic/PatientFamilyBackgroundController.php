@@ -8,11 +8,19 @@ use App\Models\clinic\Patient;
 use App\Models\clinic\System;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 class PatientFamilyBackgroundController extends Controller
 {
+    public function __construct(){
+        //$this->authorizeResource(FamilyBackground::class);
+    }
     
     public function create(int $id){
+        //$this->authorize('create',Auth::user());
+        if(request()->user()->cannot('create',FamilyBackground::class)){ //asi porque es en $int lo arriuna
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
         return Inertia::render('Clinic/Patients/Patient_Family_Backgrounds/CreateEditPatientFamilyBackground',[
             'systems' => System::select(['id','name'])->get(),
             'patient' => Patient::select(['id','name'])->get()->find($id)
@@ -20,7 +28,10 @@ class PatientFamilyBackgroundController extends Controller
     }
 
     public function store(Request $request){
-
+        //$this->authorize('create',Auth::user());
+        if(request()->user()->cannot('create',FamilyBackground::class)){ //asi porque es en $int lo arriuna
+            abort(403); // es igual $this->authorize()
+        }
         $attributes = $request->validate([
             'patient_id' => 'required|numeric',
             'system_id' => 'required|numeric',
@@ -38,6 +49,8 @@ class PatientFamilyBackgroundController extends Controller
     }
 
     public function edit(FamilyBackground $familyBackground){
+        $this->authorize('update',$familyBackground);
+
         return Inertia::render('Clinic/Patients/Patient_Family_Backgrounds/CreateEditPatientFamilyBackground',[
             'systems' => System::select(['id','name'])->get(),
             'patient' => Patient::select(['id','name'])->get()->find($familyBackground->patient_id),
@@ -46,6 +59,7 @@ class PatientFamilyBackgroundController extends Controller
         ]);
     }
     public function update(Request $request,FamilyBackground $familyBackground){
+        $this->authorize('update',$familyBackground);
 
         $attributes = $request->validate([
             'patient_id' => 'required|numeric',
@@ -63,7 +77,8 @@ class PatientFamilyBackgroundController extends Controller
     }
 
     public function destroy(FamilyBackground $familyBackground){
-        //dd('hola');
+        $this->authorize('delete',$familyBackground);
+
         $familyBackground->delete();
         return back()->with([
 			'type' => 'success',

@@ -39,7 +39,7 @@
         <HappyDentsLayout>
             <Head title="Pacientes"/>
             <div class="container">
-                <div class="row ">
+                <div class="row py-4">
                     <div class="col-md-10 offset-md-1 p-5 bg-light border rounded-3">
                         <PatientForm class="" 
                         :branch_offices="branch_offices" :form="form" @submit.prevent="form.post(route('pacientes.store'))"/>

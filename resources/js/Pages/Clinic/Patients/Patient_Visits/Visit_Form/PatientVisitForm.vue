@@ -58,7 +58,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="date" class="form-label">Fecha</label>
-                        <input type="date" id="date"
+                        <input type="datetime" id="date"
                                 class="form-control rounded"
                             v-model="form.date" required>
                         <InputError class="mt-2" :message="form.errors.date" />

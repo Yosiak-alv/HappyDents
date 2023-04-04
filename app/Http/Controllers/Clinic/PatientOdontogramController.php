@@ -11,12 +11,20 @@ use Inertia\Inertia;
 class PatientOdontogramController extends Controller
 {
     public function create(int $id){
+        //dd(request()->user()->cannot('createOdontogram',Detention::class));
+        if(request()->user()->cannot('createOdontogram',Detention::class)){
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
         return Inertia::render('Clinic/Patients/Patient_Odontogram/CreateEditPatientOdontogram',[
             'detentions'=> Detention::all(['id','name']),
             'patient' => Patient::select(['id','name'])->get()->find($id)
         ]);
     }
     public function store(Request $request, int $id){
+        if(request()->user()->cannot('createOdontogram',Detention::class)){
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+
         $paciente =  Patient::find($id);
         $attributes = $request->validate([
             'detention_id' => 'required|array',
@@ -31,14 +39,26 @@ class PatientOdontogramController extends Controller
 		]);
     }
     public function edit(int $id){
+        if(request()->user()->cannot('updateOdontogram',Detention::class)){
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+
         $paciente = Patient::select(['id','name'])->get()->find($id);
         return Inertia::render('Clinic/Patients/Patient_Odontogram/CreateEditPatientOdontogram',[
             'detentions'=> Detention::all(['id','name']),
             'patient' => $paciente,
-            'patient_odontogram_detentions' => $paciente->detentions()->select('id')->get()->pluck('id')
+            //'patient_odontogram_detentions' => $paciente->detentions()->select('id')->get()->pluck('id'),
+            'selected_patient_odontogram_detentions' => $paciente->detentions()->select('id')->get()->pluck('id'),
+            //'selected_patient_odontogram_detentions' => $paciente->detentions()->select('id','condition')->get(),
+            'odontogram_conditions' => $paciente->detentions()->select(['condition'])->get()->pluck('condition')
         ]);
     }
     public function update(Request $request , int $id){
+
+        if(request()->user()->cannot('updateOdontogram',Detention::class)){
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+
         $paciente = Patient::find($id);
 
         $attributes = $request->validate([
@@ -54,6 +74,11 @@ class PatientOdontogramController extends Controller
 		]);
     }
     public function remove(int $id){
+
+        if(request()->user()->cannot('removeOdontogram',Detention::class)){
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+
         $paciente = Patient::find($id);
         $paciente->detentions()->sync([]); //agrega solo lo del array lo demas hace detach
         

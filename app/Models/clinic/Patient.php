@@ -31,7 +31,7 @@ class Patient extends Model
     }
     public function detentions() : BelongsToMany
     {
-        return $this->belongsToMany(Detention::class,'odontograms');
+        return $this->belongsToMany(Detention::class,'odontograms')->withPivot('condition');
     }
     public function hospitalizations() : hasMany
     {
@@ -44,7 +44,7 @@ class Patient extends Model
 
     public function systems() : BelongsToMany
     {
-        return $this->belongsToMany(System::class ,'patient_systems');
+        return $this->belongsToMany(System::class ,'patient_systems')->withPivot('condition');
     }
     public function family_backgrounds() : hasMany
     {

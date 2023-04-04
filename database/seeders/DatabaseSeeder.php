@@ -26,6 +26,9 @@ class DatabaseSeeder extends Seeder
             
             FamilyBackgroundSeeder::class,
             VisitSeeder::class,
+
+            RoleSeeder::class,
+            UserSeeder::class
        ]);
     }
 }

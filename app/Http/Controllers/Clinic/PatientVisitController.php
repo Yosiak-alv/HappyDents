@@ -7,11 +7,18 @@ use App\Models\clinic\Patient;
 use App\Models\clinic\Visit;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class PatientVisitController extends Controller
 {
+    public function __construct(){
+        //$this->authorizeResource(Visit::class);
+    }
     public function create(int $id){
+        if(request()->user()->cannot('createvisit',Visit::class)){ //asi porque es en $int lo arriuna
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
 
         return Inertia::render('Clinic/Patients/Patient_Visits/CreateEditPatientVisit', [
             'treatments' => Treatment::all(['id','name']),
@@ -20,6 +27,9 @@ class PatientVisitController extends Controller
 
     }
     public function store(Request $request, int $id){
+        if(request()->user()->cannot('createvisit',Visit::class)){ //asi porque es en $int lo arriuna
+            abort(403); // es igual $this->authorize()
+        }
         
         $attributes = $request->validate([
             'patient_id' => 'required|numeric',
@@ -39,6 +49,7 @@ class PatientVisitController extends Controller
 
     }
     public function edit(Visit $visit){
+        $this->authorize('update',$visit);
 
         return Inertia::render('Clinic/Patients/Patient_Visits/CreateEditPatientVisit', [
             'treatments' => Treatment::all(['id','name']),
@@ -47,6 +58,7 @@ class PatientVisitController extends Controller
         ]);
     }
     public function update(Request $request,Visit $visit){
+        $this->authorize('update',$visit);
 
         $attributes = $request->validate([
             'patient_id' => 'required|numeric',
