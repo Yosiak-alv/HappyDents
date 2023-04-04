@@ -61,6 +61,10 @@ return [
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
+            /*probando spatie backup*/
+            'dump' => [
+                'dump_binary_path' => env('DB_MYSQLDUMP_PATH'),
+            ],
         ],
 
         'pgsql' => [
@@ -94,7 +98,7 @@ return [
         ],
 
     ],
-
+	
     /*
     |--------------------------------------------------------------------------
     | Migration Repository Table

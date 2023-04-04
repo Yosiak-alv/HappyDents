@@ -13,6 +13,11 @@ use Illuminate\Validation\Rule;
 
 class PatientController extends Controller
 {
+
+    public function __construct(){
+        $this->authorizeResource(Patient::class,'paciente');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -56,10 +61,12 @@ class PatientController extends Controller
      *
      * @param  int  $id
      */
-    public function show($id)
+    public function show(Patient $paciente)
     {
+        //$this->authorize('view',$paciente);
         return Inertia::render('Clinic/Patients/Show',[
-            'patient' => Patient::with(['hospitalizations','detentions','diagnostics','systems','family_backgrounds.system','visits.treatment'])->find($id),
+            //'patient' => Patient::with(['hospitalizations','detentions','diagnostics','systems','family_backgrounds.system','visits.treatment'])->find($paciente->id),
+            'patient' => $paciente->load(['hospitalizations','detentions','diagnostics','systems','family_backgrounds.system','visits.treatment']),
             'branch_offices' => BranchOffice::select(['id','name'])->get(),
             
         ]);
@@ -70,7 +77,7 @@ class PatientController extends Controller
      *
      * @param  int  $id
      */
-    public function edit($id)
+    public function edit( Patient $paciente)
     {
         
     }
@@ -99,6 +106,6 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

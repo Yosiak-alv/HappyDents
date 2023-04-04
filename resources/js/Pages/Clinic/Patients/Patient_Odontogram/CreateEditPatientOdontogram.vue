@@ -7,18 +7,23 @@
             type:Object,
             required:true
         },
-        patient_odontogram_detentions:{
+        selected_patient_odontogram_detentions:{
             type:Object,
             required:false
         },
         detentions:{
             type:Object,
             required:true
+        },
+        odontogram_conditions:{
+            type:Array,
         }
+        
     });
     const form = useForm({
-        patient_id: props.patient_odontogram_detentions?.patient_id ?? props.patient.id,
-        detention_id: props.patient_odontogram_detentions ?? [],
+        patient_id: props.patient.id,
+        detention_id: props.selected_patient_odontogram_detentions ?? [],
+        condition: props.odontogram_conditions ?? [] 
     });
     const store = () =>{
         form.post(route('pacienteOdontograma.store',form.patient_id));
@@ -35,8 +40,10 @@
             <p class="p">{{ patient.name}}</p>
         </div>
         <div class="col-md-10 offset-md-1 p-5 bg-light border rounded-3">
-            <PatientOdontogramForm :updating="(props.patient_odontogram_detentions === undefined ? false:true)" :patient_id="props.patient.id"
-            :form="form" :detentions="props.detentions" @submit.prevent="(props.patient_odontogram_detentions === undefined ? store() : update())"/>         
-        </div>            
+            <PatientOdontogramForm :updating="(props.selected_patient_odontogram_detentions === undefined ? false:true)" :patient_id="props.patient.id" 
+            :form="form" :detentions="props.detentions" @submit.prevent="(props.selected_patient_odontogram_detentions === undefined ? store() : update())"/>         
+        </div>  
+        <!--pruebas-->
+        
     </HappyDentsLayout>
 </template>

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('patient_systems', function (Blueprint $table) {
             $table->foreignIdFor(\App\Models\clinic\Patient::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->foreignIdFor(\App\Models\clinic\System::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
+            $table->text('condition')->nullable();
         });
     }
 

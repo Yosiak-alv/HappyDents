@@ -51,7 +51,8 @@
                         </select>
                         <InputError class="mt-2" :message="form.errors.system_id" />
                     </div>
-                    <div class="col-6 text-left">
+                    <div class="col-6 text-left" v-if="usePage().props.auth.user.role.type == 'administrador'
+                    || usePage().props.auth.user.role.type == 'doctor'">
                         <div v-if="updating">
                             <Link :href="route('pacienteSistema.remove',patient_id)" as="button"  method="delete" class="btn btn-danger mt-3 ">Eliminar el Sistema Inmunologico del Paciente</Link>
                         </div>

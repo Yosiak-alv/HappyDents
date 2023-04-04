@@ -12,6 +12,11 @@ use Inertia\Inertia;
 class PatientSystemController extends Controller
 {
     public function create(int $id){
+
+        if(request()->user()->cannot('createSystemPatient',System::class)){
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+        
         return Inertia::render('Clinic/Patients/Patient_Systems/CreateEditPatientSystem',[
             'systems'=> System::all(['id','name']),
             'patient' => Patient::select(['id','name'])->get()->find($id)
@@ -19,6 +24,10 @@ class PatientSystemController extends Controller
     }
 
     public function store(Request $request, int $id){
+        if(request()->user()->cannot('createSystemPatient',System::class)){
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+        
         $paciente =  Patient::find($id);
         $attributes = $request->validate([
             'system_id' => 'required|array',
@@ -34,6 +43,10 @@ class PatientSystemController extends Controller
     }
 
     public function edit(int $id){
+        if(request()->user()->cannot('updateSystemPatient',System::class)){
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+        
         $paciente = Patient::select(['id','name'])->get()->find($id);
         return Inertia::render('Clinic/Patients/Patient_Systems/CreateEditPatientSystem',[
             'systems'=> System::all(['id','name']),
@@ -43,6 +56,9 @@ class PatientSystemController extends Controller
     }
 
     public function update(Request $request, int $id){
+        if(request()->user()->cannot('updateSystemPatient',System::class)){
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
         $paciente = Patient::find($id);
         $attributes = $request->validate([
             'system_id' => 'required|array',
@@ -58,6 +74,11 @@ class PatientSystemController extends Controller
     }
 
     public function remove(int $id){
+
+        if(request()->user()->cannot('removeSystemPatient',System::class)){
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+
         $paciente = Patient::find($id);
         $paciente->systems()->sync([]); //agrega solo lo del array lo demas hace detach
 
