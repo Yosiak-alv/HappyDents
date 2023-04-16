@@ -1,6 +1,7 @@
 <script setup>
     import { Link,router,usePage } from "@inertiajs/vue3";
-    import { onMounted } from 'vue';
+    import Modal from '@/Components/Modal.vue';
+    import { onMounted,ref } from 'vue';
     import $ from 'jquery';
     import DataTable from 'datatables.net-dt';
     const props = defineProps({
@@ -21,6 +22,27 @@
     onMounted(() => {
         $('#datatable2').DataTable();
     });
+
+    //---Modal Section----
+    const confirmingAntecedentesDeletion = ref(false);
+    const selectedAntecedentes = ref(0);
+    
+    const confirmAntecedentesDeletion = (id) => {
+        confirmingAntecedentesDeletion.value = true;
+        selectedAntecedentes.value = id;
+    };
+
+    const closeModal = () => {
+        confirmingAntecedentesDeletion.value = false;
+    };
+    
+    const deleteAntecedentes = () => {
+        router.delete(route('pacienteAntecedentesFamiliares.destroy',selectedAntecedentes.value),{
+            preserveScroll: true,
+            onSuccess: () => closeModal(),
+            onError: () => closeModal(),
+        });
+    };
 </script>
 <style>
 @import 'datatables.net-dt';
@@ -57,7 +79,7 @@
                     <td class="text-center" v-if="usePage().props.auth.user.role.type == 'administrador'
                     || usePage().props.auth.user.role.type == 'doctor'">
                         <Link :href="route('pacienteAntecedentesFamiliares.edit', family_background.id)" as="button"  class="btn btn-outline-success">Editar</Link>
-                        <button @click="destroy(family_background.id)" class="btn btn-outline-danger">Eliminar</button>                        
+                        <button @click="confirmAntecedentesDeletion(family_background.id)" class="btn btn-outline-danger">Eliminar</button>                        
                     </td>
                 
                 </tr>
@@ -73,4 +95,31 @@
             </div>
         </p>
     </div>
+
+    <Modal :show="confirmingAntecedentesDeletion" @close="closeModal">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="h4 p-4">
+                        Seguro de Eliminar COMPLETAMENTE el Registro ?
+                    </h4>
+                </div>
+                <div class="col-12">
+                    <p class="p p-4"> 
+                        Si lo Elimina, el registro se borrara PERMANETEMENTE, sin posibilidad de 
+                        recuperacion de la informacion del registro, desea continuar ?
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-row-reverse border">
+            <div class="p-2 ">
+                <button class="btn btn-secondary" @click="closeModal">Cancelar</button>
+            </div>
+            <div class="p-2">
+                <button class="btn btn-danger" @click="deleteAntecedentes">Confirmar</button>
+            </div>
+        </div>
+    </Modal>
 </template>

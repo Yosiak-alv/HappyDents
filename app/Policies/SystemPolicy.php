@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\clinic\Patient;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -19,12 +20,13 @@ class SystemPolicy
         //
     }
 
-    public function createSystemPatient(User $user)
+    public function createSystemPatient(User $user, int $id)
     {
         //return false;
         //dd('createodo');
+        $paciente = Patient::find($id);
         if($user->role->type == 'administrador' || $user->role->type == 'doctor'  ){
-            return true;
+            return !$paciente->systems()->exists();
         }
         return false;
     }

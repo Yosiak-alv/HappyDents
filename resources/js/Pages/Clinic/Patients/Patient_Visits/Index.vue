@@ -1,6 +1,7 @@
 <script setup>
-    import { Link,usePage } from "@inertiajs/vue3";
-    import { onMounted } from 'vue';
+    import { Link,usePage,router } from "@inertiajs/vue3";
+    import Modal from '@/Components/Modal.vue';
+    import { onMounted,ref } from 'vue';
     import $ from 'jquery';
     import DataTable from 'datatables.net-dt';
     const props = defineProps({
@@ -15,6 +16,27 @@
     onMounted(() => {
         $('#datatable6').DataTable();
     });
+
+     //---Modal Section----
+     const confirmingVisitDeletion = ref(false);
+    const selectedVisit = ref(0);
+    
+    const confirmVisitDeletion = (id) => {
+        confirmingVisitDeletion.value = true;
+        selectedVisit.value = id;
+    };
+
+    const closeModal = () => {
+        confirmingVisitDeletion.value = false;
+    };
+    
+    const deleteVisit = () => {
+        router.delete(route('pacienteVisitas.destroy',selectedVisit.value),{
+            preserveScroll: true,
+            onSuccess: () => closeModal(),
+            onError: () => closeModal(),
+        });
+    };
 </script>
 <style>
 @import 'datatables.net-dt';
@@ -46,10 +68,9 @@
                     <td>{{visit.payment}}</td>
                     <td>{{visit.date }}</td>
                     <td class="text-center" v-if="usePage().props.auth.user.role.type != 'asistente dental'">
-                        <Link :href="route('pacienteVisitas.edit',visit.id)"  as="button" method="get" class="btn btn-outline-success">Editar</Link>
-                        <!--<Link  as="button" method="get" class="btn btn-outline-danger">Eliminar</Link>-->
+                        <Link :href="route('pacienteVisitas.edit',visit.id)" as="button" method="get" class="btn btn-outline-success">Editar</Link>
+                        <button @click="confirmVisitDeletion(visit.id)" class="btn btn-outline-danger">Eliminar</button>
                     </td>
-                
                 </tr>
             </tbody>
         </table>
@@ -62,4 +83,32 @@
             </div>
         </p>
     </div>
+
+    <Modal :show="confirmingVisitDeletion" @close="closeModal">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="h4 p-4">
+                        Seguro de Eliminar el Registro ?
+                    </h4>
+                </div>
+                <div class="col-12">
+                    <p class="p p-4"> 
+                        Si lo Elimina, el registro siempre permanecera en el sistema con estado inactivo, considere
+                        que otros registros que utilizen este, apareceran vacios, esperando su edicion o restauracion 
+                        de este registro.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-row-reverse border">
+            <div class="p-2 ">
+                <button class="btn btn-secondary" @click="closeModal">Cancelar</button>
+            </div>
+            <div class="p-2">
+                <button class="btn btn-danger" @click="deleteVisit">Confirmar</button>
+            </div>
+        </div>
+    </Modal>
 </template>

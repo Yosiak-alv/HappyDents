@@ -18,7 +18,7 @@ const destroy = (id) =>{
 <template>
     <HappyDentsLayout>
         <Head title="Usuarios"/> 
-        <div class="container">
+        <div class="container mt-5">
             <div class="row p-5 bg-light border rounded-3">
                 <div class="col-3" align="center">
                     <img src="/storage/img/user_account.png" alt="User Image" height="312" width="312">

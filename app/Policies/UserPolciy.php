@@ -84,7 +84,13 @@ class UserPolciy
         }
         return false;
     }
-
+    public function deleteIndex(User $user)
+    {
+        if($user->role->type == 'administrador'){
+            return true;
+        }
+        return false;
+    }
     /**
      * Determine whether the user can restore the model.
      *
@@ -92,7 +98,7 @@ class UserPolciy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, User $model) :bool
+    public function restore(User $user) :bool
     {
         if($user->role->type == 'administrador'){
             return true;
@@ -100,7 +106,13 @@ class UserPolciy
         return false;
 
     }
-
+    public function restoreAll(User $user)
+    {
+        if($user->role->type == 'administrador'){
+            return true;
+        }
+        return false;
+    }
     /**
      * Determine whether the user can permanently delete the model.
      *
@@ -108,10 +120,10 @@ class UserPolciy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, User $model):bool
+    public function forceDelete(User $user,User $model):bool
     {
         if($user->role->type == 'administrador'){
-            return true;
+            return $user->id != $model->id;
         }
         return false;
 

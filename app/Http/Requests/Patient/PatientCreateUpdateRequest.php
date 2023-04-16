@@ -31,7 +31,7 @@ class PatientCreateUpdateRequest extends FormRequest
             'genre' => ['required','max:255'],
             'branch_office_id' => ['required'],
             'email' => ['required','email','max:255',Rule::unique('patients','email')->ignore($this->paciente?->id)],
-            'phone' => 'required|numeric',
+            'phone' => 'required',
             'second_phone' => 'nullable',
             'address' => 'required|max:5000',
             'occupation' => 'required',

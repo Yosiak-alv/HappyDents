@@ -1,6 +1,6 @@
 <script setup>
-    import { Link,usePage } from "@inertiajs/vue3";
-    import { onMounted } from 'vue';
+    import { Link,usePage,router } from "@inertiajs/vue3";
+    import { onMounted,ref } from 'vue';
     import $ from 'jquery';
     import DataTable from 'datatables.net-dt';
     const props = defineProps({
@@ -15,9 +15,11 @@
     onMounted(() => {
         $('#datatable5').DataTable();
     });
+
+
 </script>
 <style>
-@import 'datatables.net-dt';
+    @import 'datatables.net-dt';
 </style>
 
 <template>
@@ -58,4 +60,6 @@
             </div>
         </p>
     </div>
+
+   
 </template>

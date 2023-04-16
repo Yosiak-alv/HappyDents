@@ -13,7 +13,7 @@ class PatientSystemController extends Controller
 {
     public function create(int $id){
 
-        if(request()->user()->cannot('createSystemPatient',System::class)){
+        if(request()->user()->cannot('createSystemPatient',[System::class,$id])){
             abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
         }
         
@@ -24,7 +24,7 @@ class PatientSystemController extends Controller
     }
 
     public function store(Request $request, int $id){
-        if(request()->user()->cannot('createSystemPatient',System::class)){
+        if(request()->user()->cannot('createSystemPatient',[System::class,$id])){
             abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
         }
         

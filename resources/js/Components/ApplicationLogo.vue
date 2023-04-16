@@ -1,4 +1,4 @@
 <template>
-  <img src="storage/img/dents home.jpg" style=" width: 100px ; height: 100px;">
+  <img src="/storage/img/dents_home.jpg" style=" width: 100px ; height: 100px;">
 
 </template>

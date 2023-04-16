@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignIdFor(Role::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

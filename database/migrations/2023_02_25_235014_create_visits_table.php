@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\clinic\Patient::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
-            $table->foreignIdFor(\App\Models\clinic\Treatment::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignIdFor(\App\Models\clinic\Patient::class)->nullable(false)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\clinic\Treatment::class)->nullable(false)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->double('payment');
             $table->timestamp('date')->nullable()->useCurrent();
+            $table->softDeletes();
+
         });
     }
 

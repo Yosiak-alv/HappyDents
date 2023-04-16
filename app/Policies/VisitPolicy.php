@@ -16,7 +16,10 @@ class VisitPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        if($user->role->type == 'administrador' || $user->role->type == 'doctor' || $user->role->type == 'recepcionista'){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -32,7 +35,7 @@ class VisitPolicy
      * Determine whether the user can create models.
      *
      */
-    public function createvisit(User $user)
+    public function createVisit(User $user)
     {
         if($user->role->type == 'administrador' || $user->role->type == 'doctor' || $user->role->type == 'recepcionista'){
             return true;
@@ -65,4 +68,40 @@ class VisitPolicy
         return false;
     }
 
+    public function deleteIndex(User $user)
+    {
+        if($user->role->type == 'administrador' || $user->role->type == 'doctor' || $user->role->type == 'recepcionista'){
+            return true;
+        }
+        return false;
+    }
+
+    public function restore(User $user)
+    {
+        if($user->role->type == 'administrador' || $user->role->type == 'doctor' || $user->role->type == 'recepcionista'){
+            return true;
+        }
+        return false;
+    }
+    public function restoreAll(User $user)
+    {
+        if($user->role->type == 'administrador' || $user->role->type == 'doctor' || $user->role->type == 'recepcionista'){
+            return true;
+        }
+        return false;
+    }
+    public function forceDelete(User $user)
+    {
+        if($user->role->type == 'administrador'){
+            return true;
+        }
+        return false;
+    }
+    public function generateInvoicePDF(User $user)
+    {
+        if($user->role->type == 'administrador' || $user->role->type == 'doctor' || $user->role->type == 'recepcionista'){
+            return true;
+        }
+        return false;
+    }
 }

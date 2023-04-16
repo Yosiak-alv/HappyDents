@@ -14,9 +14,16 @@
 
 
 <template>
-    <div v-if="flash.type">
+    <div v-if="flash.type == 'success'">
         <div v-show="showMessage">
             <p class="alert alert-success" role="alert">
+                {{flash.message }}
+            </p> 
+        </div>
+    </div>
+    <div v-else-if="flash.type == 'error'">
+        <div v-show="showMessage">
+            <p class="alert alert-danger" role="alert">
                 {{flash.message }}
             </p> 
         </div>

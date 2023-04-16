@@ -1,5 +1,5 @@
 <script setup>
-    import {Link} from '@inertiajs/vue3';  
+    import {Link,router, usePage} from '@inertiajs/vue3';  
     //import InputLabel from "@/Components/InputLabel.vue";
     //import InputError from '@/Components/InputError.vue';
     //import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -19,22 +19,12 @@
             type:Object,
             required:true
         },
-        patient_id:{
-            type:Number,
-            required:true
-        },
         enable:{
             type:Boolean,
             default:false
         }
     });
     defineEmits(['submit.prevent']);
-
-    //const checked = ref(form.condition);
-    //const lst = computed(() =>);
-    //watch(lst, () => {
-       // checked = true;
-    //});
 
 </script>
 <template>
@@ -64,20 +54,13 @@
                         <InputError class="mt-2" :message="form.errors.detention_id" />
                     </div>
                    
-                    <div class="col-6 text-left">
-                        <div v-if="updating">
-                            <Link :href="route('pacienteOdontograma.remove',patient_id)" as="button"  method="delete" class="btn btn-danger mt-3 ">Eliminar el Odontograma</Link>
-                        </div>
-                        <div v-else></div>
-                        
-                    </div>
-                    <div class="col-6 text-right">
+                    <div class="col-12 text-right">
                         <button class="btn btn-primary mt-3 " :disabled="form.processing" >{{ updating ? 'Actualizar' : 'Crear' }}</button>
-                        
                     </div>
                    
                 </div>
             </form>
+           
         </div>
     </div>
     

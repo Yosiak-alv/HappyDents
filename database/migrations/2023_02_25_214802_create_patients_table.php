@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\clinic\BranchOffice::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
+            $table->softDeletes();
             $table->string('contact_name')->nullable();;
             $table->string('contact_phone')->nullable();;
             $table->string('contact_email')->unique()->nullable();

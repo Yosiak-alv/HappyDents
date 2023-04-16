@@ -1,12 +1,81 @@
 <template>
     <Layout>
-        <div class="container">
+        <Head title="Home"/>
+        <div class="container mt-5">
             <div class="row">
-                <div class="col-md-6">
-                    <img src="storage/img/dents home.jpg" alt="Happy Dents Clinic" class="img-fluid"/>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="card text-center">
+                                <div class="card-header bg-info text-white">
+                                    <div class="row">
+                                        <div class="col ">
+                                            <i class="bi bi-file-earmark-person fs-1"></i>
+                                        </div>
+                                        <div class="col">
+                                            <p class="h2">{{props.patients}}
+                                            </p>
+                                            <p class="h4">Pacientes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="card text-center">
+                                <div class="card-header bg-info text-white">
+                                    <div class="row">
+                                        <div class="col ">
+                                            <i class="bi bi-calendar-event-fill fs-1"></i>
+                                        </div>
+                                        <div class="col">
+                                            <p class="h2">{{props.visits}}
+                                            </p>
+                                            <p class="h4">Visitas</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="card text-center">
+                                <div class="card-header bg-info text-white">
+                                    <div class="row">
+                                        <div class="col ">
+                                            <i class="bi bi-eyedropper fs-1"></i>
+                                        </div>
+                                        <div class="col">
+                                            <p class="h2">{{props.treatments}}
+                                            </p>
+                                            <p class="h4">Tratamientos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="card text-center">
+                                <div class="card-header bg-info text-white">
+                                    <div class="row">
+                                        <div class="col ">
+                                            <i class="bi bi-people fs-1"></i>
+                                        </div>
+                                        <div class="col">
+                                            <p class="h2">{{props.users}}
+                                            </p>
+                                            <p class="h4">Usuarios</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h1>Happy Dents</h1>
+                <div class="col-md-6 mt-5">
+                    <img src="/storage/img/dents_home.jpg" alt="Happy Dents Clinic" class="img-fluid"/>
+                </div>
+                <div class="col-md-6 mt-5">
+                    <h1 class="h3">Happy Dents</h1>
                     <p>
                         Somos una moderna clínica dental ubicada en el corazón de la
                         ciudad. Nuestros dentistas experimentados y nuestro amable personal brindan
@@ -20,20 +89,33 @@
         </div>
     </Layout>
     <footer class="text-center text-white p-4" style="background-color: #00BFFF;">
-            <p>&copy; 2023 Happy Dents. All rights reserved.</p>
-            <a href="#" class="mx-3">Privacy Policy</a>
-            <a href="#" class="mx-3">Terms of Service</a>
-            <a href="#" class="mx-3">Contact Us</a>
-        </footer>
+        <p>&copy; 2023 Happy Dents. All rights reserved.</p>
+        <Link href="#" class="mx-3">Privacy Policy</Link>
+        <Link href="#" class="mx-3">Terms of Service</Link>
+        <Link href="#" class="mx-3">Contact Us</Link>
+    </footer>
 </template>
 
 <script setup>
-import Layout from "@/Layouts/HappyDentsLayout.vue";
-import {Head, router, Link} from '@inertiajs/vue3';
-import TextInput from "@/Components/TextInput.vue";
-import {ref, watch} from "vue";
-import {debounce} from "lodash";
-import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
+    import Layout from "@/Layouts/HappyDentsLayout.vue";
+    import {Head, router, Link} from '@inertiajs/vue3';
+  
+    const props = defineProps({
+        patients:{
+            type:Number,
+            required:true
+        },
+        treatments:{
+            type:Number,
+            required:true
+        },
+        users:{
+            type:Number,
+            required:true
+        },
+        visits:{
+            type:Number,
+            required:true
+        }
+    });
 </script>

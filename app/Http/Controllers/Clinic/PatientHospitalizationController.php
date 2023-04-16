@@ -28,7 +28,7 @@ class PatientHospitalizationController extends Controller
             abort(403); // es igual $this->authorize()
         }
         $attributes = $request->validate([
-            'patient_id' => 'required',
+            'patient_id' => 'required|numeric|gt:0',
             'reason' => 'required|max:5000',
             'date' => 'required',
         ]);
@@ -53,7 +53,7 @@ class PatientHospitalizationController extends Controller
         $this->authorize('update',$hospitalization);
 
         $attributes = $request->validate([
-            'patient_id' => 'required',
+            'patient_id' => 'required|numeric|gt:0',
             'reason' => 'required|max:5000',
             'date' => 'required'
         ]);

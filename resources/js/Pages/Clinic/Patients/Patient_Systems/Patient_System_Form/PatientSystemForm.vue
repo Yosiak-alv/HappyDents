@@ -1,5 +1,5 @@
 <script setup>
-    import {Link} from '@inertiajs/vue3';  
+    import {Link,usePage,router} from '@inertiajs/vue3';  
     //import InputLabel from "@/Components/InputLabel.vue";
     //import InputError from '@/Components/InputError.vue';
     //import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -24,7 +24,6 @@
         }
     });
     defineEmits(['submit.prevent']);
-
 </script>
 <template>
     <div class="container">
@@ -51,20 +50,13 @@
                         </select>
                         <InputError class="mt-2" :message="form.errors.system_id" />
                     </div>
-                    <div class="col-6 text-left" v-if="usePage().props.auth.user.role.type == 'administrador'
-                    || usePage().props.auth.user.role.type == 'doctor'">
-                        <div v-if="updating">
-                            <Link :href="route('pacienteSistema.remove',patient_id)" as="button"  method="delete" class="btn btn-danger mt-3 ">Eliminar el Sistema Inmunologico del Paciente</Link>
-                        </div>
-                        <div v-else></div>
-                        
-                    </div>
-                    <div class="col-6 text-right">
+                    <div class="col-12 text-right">
                         <button class="btn btn-primary mt-3 " :disabled="form.processing" >{{ updating ? 'Actualizar' : 'Crear' }}</button>
                         
                     </div>
                 </div>
             </form>
+            
         </div>
     </div>
     

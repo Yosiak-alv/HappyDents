@@ -6,6 +6,7 @@ use App\Http\Requests\Patient\PatientCreateUpdateRequest;
 use App\Models\clinic\BranchOffice;
 use App\Models\clinic\Detention;
 use App\Models\clinic\Patient;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
@@ -29,7 +30,7 @@ class PatientController extends Controller
             'filters' => \Illuminate\Support\Facades\Request::only('search'),
         ]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -73,16 +74,6 @@ class PatientController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     */
-    public function edit( Patient $paciente)
-    {
-        
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -104,8 +95,62 @@ class PatientController extends Controller
      *
      * @param  int  $id
      */
-    public function destroy($id)
+    public function destroy(Patient $paciente)
     {
+        $paciente->delete();
         
+        return redirect()->route('pacientes.index')->with([
+			'type' => 'success',
+            'message' => 'Paciente Eliminado Satisfactoriamente!.',
+		]);
+    }
+
+    public function forceDelete(int $id)
+    {
+        if(request()->user()->cannot('forceDelete',Patient::class)){ //asi porque es en $int lo arriuna
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+        $paciente = Patient::withTrashed()->find($id);
+        $paciente->forceDelete();
+
+        return redirect()->route('pacientes.index')->with([
+			'type' => 'success',
+            'message' => 'Paciente Eliminado por Completo del Sistema Satisfactoriamente!.',
+		]);
+    }
+    public function deleteIndex()
+    {
+        if(request()->user()->cannot('deleteIndex',Patient::class)){ //asi porque es en $int lo arriuna
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+
+        return Inertia::render('Clinic/Patients/DeletedIndex',[
+            'patients' => Patient::onlyTrashed()->select(['id','dui','name','lastname','phone','deleted_at'])->get()
+        ]);
+    }
+
+    public function restore(int $id)
+    {
+        if(request()->user()->cannot('restore',Patient::class)){ //asi porque es en $int lo arriuna
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+        Patient::withTrashed()->find($id)->restore();
+
+        return redirect()->route('pacientes.index')->with([
+			'type' => 'success',
+            'message' => 'Paciente Restaurado Satisfactoriamente!.',
+		]);
+    }
+    public function restoreAll()
+    {
+        if(request()->user()->cannot('restoreAll',Patient::class)){ //asi porque es en $int lo arriuna
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+        Patient::onlyTrashed()->restore();
+
+        return redirect()->route('pacientes.index')->with([
+			'type' => 'success',
+            'message' => 'Pacientes Restaurados Satisfactoriamente!.',
+		]);
     }
 }

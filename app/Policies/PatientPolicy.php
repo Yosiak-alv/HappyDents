@@ -57,23 +57,37 @@ class PatientPolicy
      */
     public function delete(User $user, Patient $patient)
     {
-        return true;
+        if($user->role->type == 'administrador' || $user->role->type == 'doctor' || $user->role->type == 'recepcionista'){
+            return true;
+        }
+        return false;
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     */
-    public function restore(User $user, Patient $patient)
+    public function forceDelete(User $user)
     {
-        return true;
+        if($user->role->type == 'administrador'){
+            return true;
+        }
+        return false;
+    }
+    
+    public function deleteIndex(User $user)
+    {
+       return true;
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Patient $patient)
+    public function restore(User $user)
     {
-        return true;
+        if($user->role->type == 'administrador' || $user->role->type == 'doctor' || $user->role->type == 'recepcionista'){
+            return true;
+        }
+        return false;
+    }
+    public function restoreAll(User $user)
+    {
+        if($user->role->type == 'administrador' || $user->role->type == 'doctor' || $user->role->type == 'recepcionista'){
+            return true;
+        }
+        return false;
     }
 }
