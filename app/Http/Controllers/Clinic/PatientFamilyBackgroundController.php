@@ -33,8 +33,8 @@ class PatientFamilyBackgroundController extends Controller
             abort(403); // es igual $this->authorize()
         }
         $attributes = $request->validate([
-            'patient_id' => 'required|numeric',
-            'system_id' => 'required|numeric',
+            'patient_id' => 'required|numeric|gt:0',
+            'system_id' => 'required|numeric|gt:0',
             'relationship' =>'required|max:255',
             'condition' => 'required|max:5000'
         ]);
@@ -62,8 +62,8 @@ class PatientFamilyBackgroundController extends Controller
         $this->authorize('update',$familyBackground);
 
         $attributes = $request->validate([
-            'patient_id' => 'required|numeric',
-            'system_id' => 'required|numeric',
+            'patient_id' => 'required|numeric|gt:0',
+            'system_id' => 'required|numeric|gt:0',
             'relationship' =>'required|max:255',
             'condition' => 'required|max:5000'
         ]);

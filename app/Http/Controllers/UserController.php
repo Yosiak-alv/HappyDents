@@ -21,7 +21,6 @@ class UserController extends Controller
     {
         return Inertia::render('Clinic/Users/Index',[
             'users' => User::with('role')->filter(request(['search']))->paginate(6)->withQueryString(),
-            'filters' => \Illuminate\Support\Facades\Request::only('search'),
         ]);
     }
 
@@ -53,7 +52,7 @@ class UserController extends Controller
     
     public function show(User $user)
     {
-        $this->authorize('view',$user);
+        //$this->authorize('view',$user);
         return Inertia::render('Clinic/Users/Show',[
             'user' => $user->load('role')
         ]);
@@ -90,10 +89,65 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
         return to_route('users.index')->with([
             'type' => 'success',
             'message' => 'El Usuario se Ha Eliminado Satisfactoriamente'
         ]);
+    }
+
+    public function forceDelete(int $id)
+    {
+        $usuario = User::withTrashed()->find($id);
+
+        if(request()->user()->cannot('forceDelete',$usuario)){ //asi porque es en $int lo arriuna
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+        
+        $usuario->forceDelete();
+
+        return redirect()->route('users.index')->with([
+            'type' => 'success',
+            'message' => 'Usuario Eliminado por Completo del Sistema Satisfactoriamente!.',
+        ]);
+    }
+    public function deletedIndex(int $id) //sin el id no lo detecta en el web.php
+    {
+        if(request()->user()->cannot('deleteIndex',User::class)){ //asi porque es en $int lo arriuna
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+
+        return Inertia::render('Clinic/Users/DeletedIndex',[
+            'users' => User::onlyTrashed()->with(['role'])->get()
+        ]);
+    }
+
+    public function restore(int $id)
+    {
+        if(request()->user()->cannot('restore',User::class)){ //asi porque es en $int lo arriuna
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+
+        User::withTrashed()->find($id)->restore();
+        
+        return redirect()->route('users.index')->with([
+			'type' => 'success',
+            'message' => 'Usuario Restaurado Satisfactoriamente!.',
+		]);
+    }
+
+    public function restoreAll()
+    {
+        if(request()->user()->cannot('restoreAll',User::class)){ //asi porque es en $int lo arriuna
+            abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
+        }
+
+        User::onlyTrashed()->restore();
+
+        return redirect()->route('users.index')->with([
+			'type' => 'success',
+            'message' => 'Usuarios Restaurados Satisfactoriamente!.',
+		]);
     }
 
     public function resetPassword(User $user){
