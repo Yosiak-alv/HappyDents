@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\clinic\Patient;
 use App\Models\User;
 use App\Models\clinic\Detention;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -20,12 +21,12 @@ class OdontogramPolicy
         //
     }
 
-    public function createOdontogram(User $user)
+    public function createOdontogram(User $user,int $id)
     {
-        //return false;
-        //dd('createodo');
+        $paciente = Patient::find($id);
+        //dd(!$paciente->detentions()->exists());
         if($user->role->type == 'administrador' || $user->role->type == 'doctor' || $user->role->type == 'asistente dental' ){
-            return true;
+            return !$paciente->detentions()->exists();
         }
         return false;
     }
@@ -41,7 +42,7 @@ class OdontogramPolicy
     public function removeOdontogram(User $user){
         //dd($user);
         
-        if($user->role->type == 'administrador' || $user->role->type == 'doctor' || $user->role->type == 'asistente dental' ){
+        if($user->role->type == 'administrador' || $user->role->type == 'doctor'){
             return true;
         }
         return false;
