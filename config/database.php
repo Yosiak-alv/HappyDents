@@ -63,7 +63,9 @@ return [
             ]) : [],
             /*probando spatie backup*/
             'dump' => [
-                'dump_binary_path' => env('DB_MYSQLDUMP_PATH'),
+                'dump_binary_path' => 'C:\Program Files\MySQL\MySQL Server 8.0\bin',
+                'use_single_transaction',
+                'timeout' => 60 * 5,
             ],
         ],
 
