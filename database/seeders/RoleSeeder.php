@@ -15,6 +15,13 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::factory(3)->create();
+        $roles = [
+            'administrador',
+            'doctor',
+            'asistente dental',
+            'recepcionista'
+        ];
+        
+        Role::factory(count($roles))->sequence(fn ($sqn) => ['type' => $roles[$sqn->index]])->create();
     }
 }
