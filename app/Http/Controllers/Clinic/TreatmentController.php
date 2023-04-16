@@ -44,6 +44,8 @@ class TreatmentController extends Controller
             'price' => 'required|numeric|gt:0|max:255',
         ]);
 
+        $attributes['price'] = number_format((float) $attributes['price'] , 2, '.', '');
+
         Treatment::create($attributes);
 
         return redirect()->route('tratamientos.index')->with([
@@ -83,6 +85,7 @@ class TreatmentController extends Controller
             'name' => ['required','max:255',],
             'price' => 'required|numeric|gt:0|max:255',
         ]);
+        $attributes['price'] = number_format((float) $attributes['price'] , 2, '.', '');
 
         $tratamiento->update($attributes);
 
