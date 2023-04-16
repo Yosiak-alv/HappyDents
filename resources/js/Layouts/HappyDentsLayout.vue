@@ -3,7 +3,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <!--lOGO-->
             <Link :href="route('home')">
-                <img src="storage/img/dents logo.png" class="d-inline-block" alt="Happy Dents" style="height: 80px;">
+                <img src="/storage/img/Dents_logo.png" class="d-inline-block" alt="Happy Dents" style="height: 80px;">
             </Link>
 
             <!--NavBAR-->
@@ -23,18 +23,20 @@
                     <div class="col-2 ">
                         <div class="fs-5" v-if="usePage().props.auth.user.role.type === 'administrador'
                         || usePage().props.auth.user.role.type === 'recepcionista' || usePage().props.auth.user.role.type === 'doctor'">
-                            Visitas
+                            <div class="fs-5 ">
+                                <Link :href="route('visitas.index')">Visitas</Link>
+                            </div>
                         </div>
                     </div>
                     <div class="col-2" v-if="usePage().props.auth.user.role.type === 'administrador'
                     || usePage().props.auth.user.role.type === 'doctor'">
-                        <div class="fs-5">
-                            Tratamientos
+                        <div class="fs-5 ">
+                            <Link :href="route('tratamientos.index')">Tratamientos</Link>
                         </div>
                     </div>
                     <div class="col-2 " v-if="usePage().props.auth.user.role.type === 'administrador'">
                         <div class="fs-5">
-                            Respaldos
+                            <Link :href="route('backups.index')">Respaldos</Link>
                         </div>
                     </div>
                     <div class="col-2 ">
@@ -79,17 +81,21 @@
         </div>
     </header>
 
-
-    <div class="d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 80px); padding-top: 80px;">
-        <div class="container-fluid">
+    <main style="min-height: calc(100vh - 80px); padding-top: 80px;">
+       <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <Flash/>
                 </div>
-                <slot />
+                <div class="col-md-12">
+                    <slot />
+                </div>
+                
             </div>
-        </div>
-    </div>
+       </div>
+        
+    </main>
+
 </template>
 
 <script setup>

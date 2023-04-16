@@ -32,7 +32,7 @@
 <template>
     <HappyDentsLayout>
         <Head title="Usuarios"/>
-        <div class="container">
+        <div class="container mt-5">
             <div class="row p-5 bg-light border rounded-3">
                 <header>
                     <h2 class="h3">Reset Password</h2>

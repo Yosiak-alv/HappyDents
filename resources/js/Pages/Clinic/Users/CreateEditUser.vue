@@ -32,7 +32,7 @@
 <template>
     <Head title="Usuarios"/>
     <HappyDentsLayout>
-        <div class="container">
+        <div class="container mt-5">
             <div class="row ">
                 <div class="col-md-10 offset-md-1 p-5 bg-light border rounded-3">
                     <UserForm class="" :updating="(user == null ? false: true)"

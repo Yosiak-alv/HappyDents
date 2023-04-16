@@ -1,6 +1,7 @@
 <script setup>
     import { router, Link ,usePage} from "@inertiajs/vue3";
-    import { onMounted } from 'vue';
+    import Modal from '@/Components/Modal.vue';
+    import { onMounted,ref } from 'vue';
     import $ from 'jquery';
     import DataTable from 'datatables.net-dt';
     const props = defineProps({
@@ -12,17 +13,43 @@
             required:true
         }
     })
-    const destroy = (id) =>{
-        if(confirm('Esta seguro de eliminar el Diagnostico ?')){
-            router.delete(route('pacienteDiagnostico.destroy',id),)
-        }
-    };
     onMounted(() => {
         $('#datatable').DataTable();
     });
+
+    //---Modal Section----
+    const confirmingDiagnosticDeletion = ref(false);
+    const selectedDiagnostic = ref(0);
+    
+    const confirmPatientDeletion = (id) => {
+        confirmingDiagnosticDeletion.value = true;
+        selectedDiagnostic.value = id;
+    };
+
+    const closeModal = () => {
+        confirmingDiagnosticDeletion.value = false;
+    };
+    //---Metodos de links
+    const create = () =>{
+        router.get(route('pacienteDiagnostico.create',props.patient_id),{
+            preserveScroll: true,
+        });
+    };
+    const edit = (id) => {
+        router.get(route('pacienteDiagnostico.edit',id),{
+            preserveScroll: true,
+        });
+    };
+    const deleteDiagnostic = () => {
+        router.delete(route('pacienteDiagnostico.destroy',selectedDiagnostic.value),{
+            preserveScroll: true,
+            onSuccess: () => closeModal(),
+            onError: () => closeModal(),
+        });
+    };
 </script>
 <style>
-@import 'datatables.net-dt';
+    @import 'datatables.net-dt';
 </style>
 
 <template>
@@ -36,7 +63,7 @@
         </header>
         <div class="flex justify-between mt-6 mb-2" v-if="usePage().props.auth.user.role.type == 'administrador'
                     || usePage().props.auth.user.role.type == 'doctor'">
-            <Link :href="route('pacienteDiagnostico.create',props.patient_id)" as="button" class="btn btn-primary">Crear Nuevo Diagnostico</Link>
+            <button @click="create" class="btn btn-primary">Crear Nuevo Diagnostico</button>
         </div>
         <table class="table" id="datatable">
             <thead>
@@ -55,8 +82,8 @@
                     <td>{{diagnostic.date}}</td>
                     <td class="text-center" v-if="usePage().props.auth.user.role.type == 'administrador'
                     || usePage().props.auth.user.role.type == 'doctor'">
-                        <Link :href="route('pacienteDiagnostico.edit', diagnostic.id)"  as="button" class="btn btn-outline-success" preserve-scroll>Editar</Link>
-                        <button @click="destroy(diagnostic.id)" class="btn btn-outline-danger" preserve-scroll>Eliminar</button>
+                        <button @click="edit(diagnostic.id)" class="btn btn-outline-success">Editar</button>
+                        <button @click="confirmPatientDeletion(diagnostic.id)" class="btn btn-outline-danger">Eliminar</button>
                     </td>
                 
                 </tr>
@@ -72,4 +99,31 @@
             </div>
         </p>
     </div>
+
+    <Modal :show="confirmingDiagnosticDeletion" @close="closeModal">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="h4 p-4">
+                        Seguro de Eliminar COMPLETAMENTE el Registro ?
+                    </h4>
+                </div>
+                <div class="col-12">
+                    <p class="p p-4"> 
+                        Si lo Elimina, el registro se borrara PERMANETEMENTE, sin posibilidad de 
+                        recuperacion de la informacion del registro, desea continuar ?
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-row-reverse border">
+            <div class="p-2 ">
+                <button class="btn btn-secondary" @click="closeModal">Cancelar</button>
+            </div>
+            <div class="p-2">
+                <button class="btn btn-danger" @click="deleteDiagnostic">Confirmar</button>
+            </div>
+        </div>
+    </Modal>
 </template>

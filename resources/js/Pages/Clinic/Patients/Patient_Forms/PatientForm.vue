@@ -1,8 +1,7 @@
 <script setup>
-    import {usePage } from '@inertiajs/vue3';
-    //import InputLabel from "@/Components/InputLabel.vue";
-    //import InputError from '@/Components/InputError.vue';
-    //import PrimaryButton from '@/Components/PrimaryButton.vue';
+    import {usePage,Link } from '@inertiajs/vue3';
+    import Modal from '@/Components/Modal.vue';
+    import { ref } from 'vue';
     import InputError from "@/Components/InputError.vue";
     defineProps({
         form: {
@@ -21,6 +20,9 @@
 
     });
     defineEmits(['submit.prevent']);
+
+   
+
 </script>
 <template>
     <div class="container">
@@ -149,14 +151,13 @@
                         </div>
 
                     </div>
-
                     <div class="col-12 text-right" v-if="usePage().props.auth.user.role.type == 'administrador' || 
                     usePage().props.auth.user.role.type == 'doctor' || usePage().props.auth.user.role.type == 'recepcionista'">
                         <button class="btn btn-primary mt-3 mb-3" :disabled="form.processing">{{ updating ? 'Actualizar' : 'Crear' }}</button>
                     </div>
                 </div>
             </form>
+            
         </div>
     </div>
-
 </template>

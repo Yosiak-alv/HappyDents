@@ -1,6 +1,7 @@
 <script setup>
     import { router,Link,usePage} from "@inertiajs/vue3";
-    import { onMounted } from 'vue';
+    import Modal from '@/Components/Modal.vue';
+    import { onMounted,ref } from 'vue';
     import $ from 'jquery';
     import DataTable from 'datatables.net-dt';
     const props = defineProps({
@@ -12,14 +13,30 @@
             required:true
         }
     });
-    const destroy = (id) =>{
-        if(confirm('Esta seguro de eliminar la Hospitalizacion?')){
-            router.delete(route('pacienteHospitalizacion.destroy',id),)
-        }
-    };
     onMounted(() => {
         $('#datatable3').DataTable();
     });
+
+    //---Modal Section----
+    const confirmingHospitalizationDeletion = ref(false);
+    const selectedHospitalization = ref(0);
+    
+    const confirmPatientDeletion = (id) => {
+        confirmingHospitalizationDeletion.value = true;
+        selectedHospitalization.value = id;
+    };
+
+    const closeModal = () => {
+        confirmingHospitalizationDeletion.value = false;
+    };
+    
+    const deleteHospitalization = () => {
+        router.delete(route('pacienteHospitalizacion.destroy',selectedHospitalization.value),{
+            preserveScroll: true,
+            onSuccess: () => closeModal(),
+            onError: () => closeModal(),
+        });
+    };
 </script>
 <style>
 @import 'datatables.net-dt';
@@ -56,7 +73,7 @@
                     <td class="text-center" v-if="usePage().props.auth.user.role.type == 'administrador'
                     || usePage().props.auth.user.role.type == 'doctor'">
                         <Link :href="route('pacienteHospitalizacion.edit', hospitalization.id)"  as="button" class="btn btn-outline-success">Editar</Link>
-                        <button @click="destroy(hospitalization.id)" class="btn btn-outline-danger" preserve-scroll>Eliminar</button>
+                        <button @click="confirmPatientDeletion(hospitalization.id)" class="btn btn-outline-danger">Eliminar</button>
                     </td>
                 
                 </tr>
@@ -72,4 +89,31 @@
             </div>
         </p>
     </div>
+
+    <Modal :show="confirmingHospitalizationDeletion" @close="closeModal">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="h4 p-4">
+                        Seguro de Eliminar COMPLETAMENTE el Registro ?
+                    </h4>
+                </div>
+                <div class="col-12">
+                    <p class="p p-4"> 
+                        Si lo Elimina, el registro se borrara PERMANETEMENTE, sin posibilidad de 
+                        recuperacion de la informacion del registro, desea continuar ?
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-row-reverse border">
+            <div class="p-2 ">
+                <button class="btn btn-secondary" @click="closeModal">Cancelar</button>
+            </div>
+            <div class="p-2">
+                <button class="btn btn-danger" @click="deleteHospitalization">Confirmar</button>
+            </div>
+        </div>
+    </Modal>
 </template>

@@ -66,10 +66,6 @@
                     <div class="col-6">
                         <button class="btn btn-primary mt-3 " :disabled="form.processing" >{{ updating ? 'Actualizar' : 'Crear' }}</button>
                     </div>
-                    <div class="col-6 text-right">
-                        <Link  v-if="updating"
-                        :href="route('users.destroy',form.id)" as="button"  method="delete" class="btn btn-danger mt-3 ">Eliminar Usuario</Link>
-                    </div>
                 </div>
             </form>
         </div>
