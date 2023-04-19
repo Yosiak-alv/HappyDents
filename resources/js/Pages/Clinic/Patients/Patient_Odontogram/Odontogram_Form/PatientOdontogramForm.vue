@@ -19,9 +19,8 @@
             type:Object,
             required:true
         },
-        enable:{
-            type:Boolean,
-            default:false
+        conditions:{
+            type:Object,
         }
     });
     defineEmits(['submit.prevent']);
@@ -40,11 +39,14 @@
                 <div class="row">
                     <div class="mb-3">
                         <div class="row">
-                            <div class="col-6" v-for="(value,index) in detentions" :key="index">
-                                {{index}}
-                                <input type="checkbox"   :value="value.id" v-model="form.detention_id"> {{value.name}}
-                                <textarea  id="condition" v-model="form.condition[index]" class="form-control rounded"
-                                :disabled="checked"></textarea>
+                            <div class="col-6" v-for="(value,index) in detentions" :key="value.id">
+                                
+                                <input type="checkbox" :value="value.id" v-model="form.detention_id"> {{value.name}}
+                                <textarea id="condition"
+                                    class="form-control rounded"
+                                    v-model="form.condition[index]"
+                                ></textarea> 
+                               
                                
                             </div>
                             
