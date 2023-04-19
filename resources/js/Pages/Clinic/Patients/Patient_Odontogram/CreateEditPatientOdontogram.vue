@@ -18,14 +18,17 @@
             required:true
         },
         odontogram_conditions:{
+            type:Object,
+        },
+        selected_odontogram_conditions:{
             type:Array,
-        }
+        },
         
     });
     const form = useForm({
         patient_id: props.patient.id,
         detention_id: props.selected_patient_odontogram_detentions ?? [],
-        condition: props.odontogram_conditions ?? [] 
+        condition: props.selected_odontogram_conditions ?? [] 
     });
     const store = () =>{
         form.post(route('pacienteOdontograma.store',form.patient_id));
@@ -62,7 +65,7 @@
                 <p class="p">{{patient.name}}</p>
             </div>
             <div class="col-md-10 offset-md-1 p-5 bg-light border rounded-3">
-                <PatientOdontogramForm :updating="(props.selected_patient_odontogram_detentions === undefined ? false:true)"  
+                <PatientOdontogramForm :updating="(props.selected_patient_odontogram_detentions === undefined ? false:true)" :conditions="props.odontogram_conditions"
                 :form="form" :detentions="props.detentions" @submit.prevent="(props.selected_patient_odontogram_detentions === undefined ? store() : update())"/>         
                 <div class="col-md-12 text-right">
                     <div v-if="props.selected_patient_odontogram_detentions != null && (usePage().props.auth.user.role.type == 'administrador' || usePage().props.auth.user.role.type == 'doctor')">

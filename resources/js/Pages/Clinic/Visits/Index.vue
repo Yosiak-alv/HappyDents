@@ -91,7 +91,7 @@
                                         
                                         <button @click="confirmVisitDeletion(visit.id)" class="btn btn-outline-danger">Eliminar</button>
                                         <!--  revisar a -->
-                                        <a v-if=" visit.treatment != null || (visit.patient != null) " 
+                                        <a v-if="visit.patient != null " 
                                         :href="route('visitas.InvoicePDF',visit.id)"  class="btn btn-outline-secondary"><i class="bi bi-receipt"></i></a>
 
                                     </td>

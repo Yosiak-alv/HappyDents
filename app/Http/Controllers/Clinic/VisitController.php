@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\clinic;
 
+use App\Http\Requests\VisitCreateUpdateRequest;
 use App\Models\clinic\Patient;
 use App\Models\clinic\Treatment;
 use App\Models\clinic\Visit;
@@ -46,16 +47,12 @@ class VisitController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store(Request $request)
+    public function store(VisitCreateUpdateRequest $request)
     {
         if(request()->user()->cannot('createVisit',Visit::class)){ //asi porque es en $int lo arriuna
             abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
         }
-        $attr = $request->validate([
-            'patient_id' => 'required|gt:0|numeric',
-            'treatment_id' => 'required|gt:0|numeric',
-            'date' => 'required'
-        ]);
+        $attr = $request->validated();
         
         $price = Treatment::where('id',$attr['treatment_id'])->first(['price'])->price;
         $result = array_merge($attr,['payment' => number_format((float)(($price*0.05) + $price), 2, '.', '')]);
@@ -98,16 +95,12 @@ class VisitController extends Controller
      * Update the specified resource in storage.
      *
      */
-    public function update(Request $request, Visit $visita)
+    public function update(VisitCreateUpdateRequest $request, Visit $visita)
     {
         if(request()->user()->cannot('update',$visita)){ //asi porque es en $int lo arriuna
             abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
         }
-        $attr = $request->validate([
-            'patient_id' => 'required|gt:0|numeric',
-            'treatment_id' => 'required|gt:0|numeric',
-            'date' => 'required'
-        ]);
+        $attr = $request->validated();
 
         $price = Treatment::where('id',$attr['treatment_id'])->first(['price'])->price;
         $result = array_merge($attr,['payment' => number_format((float)(($price*0.05) + $price), 2, '.', '')]);

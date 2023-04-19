@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Clinic;
 
+use App\Http\Requests\Patient\FamilyBackgroundCreateEditRequest;
 use App\Models\clinic\FamilyBackground;
 use App\Models\clinic\Hospitalization;
 use App\Models\clinic\Patient;
@@ -27,21 +28,15 @@ class PatientFamilyBackgroundController extends Controller
         ]);
     }
 
-    public function store(Request $request){
-        //$this->authorize('create',Auth::user());
+    public function store(FamilyBackgroundCreateEditRequest $request){
+        
         if(request()->user()->cannot('create',FamilyBackground::class)){ //asi porque es en $int lo arriuna
             abort(403); // es igual $this->authorize()
         }
-        $attributes = $request->validate([
-            'patient_id' => 'required|numeric|gt:0',
-            'system_id' => 'required|numeric|gt:0',
-            'relationship' =>'required|max:255',
-            'condition' => 'required|max:5000'
-        ]);
+        
+        $result = FamilyBackground::create($request->validated());
 
-        FamilyBackground::create($attributes);
-
-        return redirect()->route('pacientes.show',$attributes['patient_id'])->with([
+        return redirect()->route('pacientes.show',$result->patient_id)->with([
 			'type' => 'success',
             'message' => 'Antecedente Familiar Creado Satisfactoriamente!.',
 		]);
@@ -58,17 +53,10 @@ class PatientFamilyBackgroundController extends Controller
 
         ]);
     }
-    public function update(Request $request,FamilyBackground $familyBackground){
+    public function update(FamilyBackgroundCreateEditRequest $request,FamilyBackground $familyBackground){
         $this->authorize('update',$familyBackground);
 
-        $attributes = $request->validate([
-            'patient_id' => 'required|numeric|gt:0',
-            'system_id' => 'required|numeric|gt:0',
-            'relationship' =>'required|max:255',
-            'condition' => 'required|max:5000'
-        ]);
-
-        $familyBackground->update($attributes);
+        $familyBackground->update($request->validated());
 
         return redirect()->route('pacientes.show',$familyBackground->patient_id)->with([
 			'type' => 'success',

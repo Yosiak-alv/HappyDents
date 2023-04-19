@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Clinic;
 
+use App\Http\Requests\Patient\DiagnosticCreateUpdateRequest;
 use App\Models\clinic\Diagnostic;
 use App\Models\clinic\Patient;
 use Illuminate\Http\Request;
@@ -24,21 +25,14 @@ class PatientDiagnosticController extends Controller
             'patient' => Patient::select(['id','name'])->get()->find($id)
         ]);
     }
-    public function store(Request $request){
+    public function store(DiagnosticCreateUpdateRequest $request){
         if(request()->user()->cannot('createDiagnostic',Diagnostic::class)){ //asi porque es en $int lo arriuna
             abort(403); // es igual $this->authorize()
         }
 
-        $attributes = $request->validate([
-            'patient_id' => 'required',
-            'diagnostic' => 'required|max:5000',
-            'observation' => 'required|max:5000',
-            'date' => 'required',
-        ]);
+        $diagnostic = Diagnostic::create($request->validated());
 
-        Diagnostic::create($attributes);
-
-        return redirect()->route('pacientes.show',$attributes['patient_id'])->with([
+        return redirect()->route('pacientes.show',$diagnostic->patient_id)->with([
 			'type' => 'success',
             'message' => 'Diagnostico Creado Satisfactoriamente!.',
 		]);
@@ -46,30 +40,28 @@ class PatientDiagnosticController extends Controller
     }
 
     public function edit(Diagnostic $diagnostic){
+
         $this->authorize('update',$diagnostic);
+        
         return Inertia::render('Clinic/Patients/Patient_Diagnostics/CreateEditPatientDiagnostic',[
             'patient' => Patient::select(['id','name'])->get()->find($diagnostic->patient_id),
             'patient_diagnostic' => $diagnostic
         ]);
     }
-    public function update(Request $request , Diagnostic $diagnostic){
+    public function update(DiagnosticCreateUpdateRequest $request , Diagnostic $diagnostic){
+
         $this->authorize('update',$diagnostic);
 
-        $attributes = $request->validate([
-            'patient_id' => 'required',
-            'diagnostic' => 'required|max:5000',
-            'observation' => 'required|max:5000',
-            'date' => 'required'
-        ]);
-        $diagnostic->update($attributes);
+        $diagnostic->update($request->validated());
 
-        return redirect()->route('pacientes.show',$attributes['patient_id'])->with([
+        return redirect()->route('pacientes.show',$diagnostic->patient_id)->with([
 			'type' => 'success',
             'message' => 'Diagnostico Actualizado Satisfactoriamente!.',
 		]);
 
     }
     public function destroy(Diagnostic $diagnostic){
+
         $this->authorize('delete',$diagnostic); //no funciona ?
         
         $diagnostic->delete();
