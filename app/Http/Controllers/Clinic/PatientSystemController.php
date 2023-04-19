@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Clinic;
 
+use App\Http\Requests\Patient\PatientSystemCreateEditRequest;
 use App\Models\clinic\Patient;
 use App\Models\clinic\System;
 use Illuminate\Http\Request;
@@ -23,18 +24,14 @@ class PatientSystemController extends Controller
         ]);
     }
 
-    public function store(Request $request, int $id){
+    public function store(PatientSystemCreateEditRequest $request, int $id){
         if(request()->user()->cannot('createSystemPatient',[System::class,$id])){
             abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
         }
         
         $paciente =  Patient::find($id);
-        $attributes = $request->validate([
-            'system_id' => 'required|array',
-            'system_id.*' =>'numeric|gt:0|decimal:0|max:255', //representa la iteracion de cada una 
-        ]);
 
-        $paciente->systems()->attach($attributes['system_id']);
+        $paciente->systems()->attach($request->validatedSystemId());
 
         return redirect()->route('pacientes.show',$id)->with([
 			'type' => 'success',
@@ -55,17 +52,13 @@ class PatientSystemController extends Controller
         ]);
     }
 
-    public function update(Request $request, int $id){
+    public function update(PatientSystemCreateEditRequest $request, int $id){
         if(request()->user()->cannot('updateSystemPatient',System::class)){
             abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
         }
         $paciente = Patient::find($id);
-        $attributes = $request->validate([
-            'system_id' => 'required|array',
-            'system_id.*' =>'numeric|gt:0|decimal:0|max:255', //representa la iteracion de cada una 
-        ]);
 
-        $paciente->systems()->sync($attributes['system_id']);
+        $paciente->systems()->sync($request->validatedSystemId());
 
         return redirect()->route('pacientes.show',$id)->with([
 			'type' => 'success',

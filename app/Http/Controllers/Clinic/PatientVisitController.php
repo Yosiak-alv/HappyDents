@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Clinic;
 
+use App\Http\Requests\VisitCreateUpdateRequest;
 use App\Models\clinic\Treatment;
 use App\Models\clinic\Patient;
 use App\Models\clinic\Visit;
@@ -26,17 +27,12 @@ class PatientVisitController extends Controller
         ]);
 
     }
-    public function store(Request $request, int $id){
+    public function store(VisitCreateUpdateRequest $request, int $id){
         if(request()->user()->cannot('createVisit',Visit::class)){ //asi porque es en $int lo arriuna
             abort(403); // es igual $this->authorize()
         }
         
-        $attributes = $request->validate([
-            'patient_id' => 'required|numeric|gt:0',
-            'treatment_id' => 'required|numeric|gt:0',
-            'date' => 'required'
-        ]);
-
+        $attributes = $request->validated();
         $price = Treatment::where('id',$attributes['treatment_id'])->first(['price'])->price;
         $result = array_merge($attributes,['payment' => number_format((float)(($price*0.05) + $price), 2, '.', '')]);
         
@@ -59,19 +55,14 @@ class PatientVisitController extends Controller
             'patient_visit' => $visit
         ]);
     }
-    public function update(Request $request,Visit $visit){
+    public function update(VisitCreateUpdateRequest $request,Visit $visit){
         $this->authorize('update',$visit);
 
-        $attributes = $request->validate([
-            'patient_id' => 'required|numeric|gt:0',
-            'treatment_id' => 'required|numeric|gt:0',
-            'date' => 'required'
-        ]);
+        $attributes = $request->validated();
 
         $price = Treatment::where('id',$attributes['treatment_id'])->first(['price'])->price;
         $result = array_merge($attributes,['payment' => number_format((float)(($price*0.05) + $price), 2, '.', '')]);
         
-
         $visit->update($result);
 
         return redirect()->route('pacientes.show',$visit->patient_id)->with([

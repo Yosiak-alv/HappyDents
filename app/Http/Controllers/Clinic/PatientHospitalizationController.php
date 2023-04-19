@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Clinic;
 
+use App\Http\Requests\Patient\HospitalizationCreateUpdateRequest;
 use App\Models\clinic\Hospitalization;
 use App\Models\clinic\Patient;
 use Illuminate\Http\Request;
@@ -22,20 +23,15 @@ class PatientHospitalizationController extends Controller
             'patient' => Patient::select(['id','name'])->get()->find($id)
         ]);
     }
-    public function store(Request $request){
+    public function store(HospitalizationCreateUpdateRequest $request){
         
         if(request()->user()->cannot('createHospitalization',Hospitalization::class)){ //asi porque es en $int lo arriuna
             abort(403); // es igual $this->authorize()
         }
-        $attributes = $request->validate([
-            'patient_id' => 'required|numeric|gt:0',
-            'reason' => 'required|max:5000',
-            'date' => 'required',
-        ]);
+       
+        $hospitalization = Hospitalization::create($request->validated());
 
-        Hospitalization::create($attributes);
-
-        return redirect()->route('pacientes.show',$attributes['patient_id'])->with([
+        return redirect()->route('pacientes.show',$hospitalization->patient_id)->with([
 			'type' => 'success',
             'message' => 'Hospitalizacion Creada Satisfactoriamente!.',
 		]);
@@ -49,16 +45,10 @@ class PatientHospitalizationController extends Controller
             'patient_hospitalization' => $hospitalization
         ]);
     }
-    public function update(Request $request,Hospitalization $hospitalization){
+    public function update(HospitalizationCreateUpdateRequest $request,Hospitalization $hospitalization){
         $this->authorize('update',$hospitalization);
 
-        $attributes = $request->validate([
-            'patient_id' => 'required|numeric|gt:0',
-            'reason' => 'required|max:5000',
-            'date' => 'required'
-        ]);
-
-        $hospitalization->update($attributes);
+        $hospitalization->update($request->validated());
 
         return redirect()->route('pacientes.show',$hospitalization->patient_id)->with([
 			'type' => 'success',

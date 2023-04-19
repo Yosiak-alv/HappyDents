@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\clinic;
 
+use App\Http\Requests\TreatmentCreateEditRequest;
 use App\Models\clinic\Treatment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,16 +10,14 @@ use Inertia\Inertia;
 class TreatmentController extends Controller
 {
     public function __construct(){
-        $this->authorizeResource(Treatment::class,'tratamiento');
+        //$this->authorizeResource(Treatment::class,'tratamiento');
     }
 
     /**
      * Display a listing of the resource
      */
     public function index()
-    {
-       
-        //dd(Treatment::all());
+    {       
         return Inertia::render('Clinic/Treatments/Index',[
             'treatments' => Treatment::all()
         ]);
@@ -28,7 +27,6 @@ class TreatmentController extends Controller
      */
     public function create()
     {
-       
         return Inertia::render('Clinic/Treatments/CreateEditTreatment');
     }
 
@@ -36,13 +34,10 @@ class TreatmentController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store(Request $request)
+    public function store(TreatmentCreateEditRequest $request)
     {
-       
-        $attributes = $request->validate([
-            'name' => ['required','max:255',],
-            'price' => 'required|numeric|gt:0|max:255',
-        ]);
+        
+        $attributes = $request->validated();
 
         $attributes['price'] = number_format((float) $attributes['price'] , 2, '.', '');
 
@@ -78,13 +73,11 @@ class TreatmentController extends Controller
      * Update the specified resource in storage.
      *
      */
-    public function update(Request $request, Treatment $tratamiento)
+    public function update(TreatmentCreateEditRequest $request, Treatment $tratamiento)
     {
        
-        $attributes = $request->validate([
-            'name' => ['required','max:255',],
-            'price' => 'required|numeric|gt:0|max:255',
-        ]);
+        $attributes = $request->validated();
+
         $attributes['price'] = number_format((float) $attributes['price'] , 2, '.', '');
 
         $tratamiento->update($attributes);
