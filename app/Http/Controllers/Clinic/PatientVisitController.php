@@ -39,8 +39,9 @@ class PatientVisitController extends Controller
         Visit::create($result);
 
         return redirect()->route('pacientes.show',$id)->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Visita Creada Satisfactoriamente!.',
+            'level' => 'success'
 		]);
 
 
@@ -65,9 +66,10 @@ class PatientVisitController extends Controller
         
         $visit->update($result);
 
-        return redirect()->route('pacientes.show',$visit->patient_id)->with([
-			'type' => 'success',
+        return to_route('pacientes.show',$visit->patient_id)->with([
+            'type' => 'floating',
             'message' => 'Visita Editada Satisfactoriamente!.',
+            'level' => 'success'
 		]);
 
     }
@@ -77,8 +79,9 @@ class PatientVisitController extends Controller
         $visit->delete();
 
         return back()->with([
-            'type' => 'success',
+            'type' => 'floating',
             'message' => 'Visita Eliminada Satisfactoriamente!.',
+            'level' => 'success'
        ]);
     }
 }

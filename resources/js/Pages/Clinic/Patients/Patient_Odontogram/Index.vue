@@ -49,7 +49,7 @@
     </div>
     <div v-else>
         <p class="mt-1 text-sm text-gray-600 p-5 text-center">
-            El paciente no posee Odontogrma.
+            El paciente no posee Odontograma.
             <div class="py-4" v-if="usePage().props.auth.user.role.type != 'recepcionista'">
                 <Link :href="route('pacienteOdontograma.create',props.patient_id)"  method="get" as="button" class="btn btn-secondary">Actualizar Informacion.</Link>
             </div>

@@ -44,8 +44,9 @@ class UserController extends Controller
         User::create($attributes);
 
         return to_route('users.index')->with([
-            'type' => 'success',
-            'message' => 'El Usuario se Ha Creado Satisfactoriamente'
+            'type' => 'floating',
+            'message' => 'El Usuario se Ha Creado Satisfactoriamente',
+            'level' => 'success'
         ]);
     }
 
@@ -79,9 +80,10 @@ class UserController extends Controller
 
         $user->update($attributes);
 
-        return to_route('users.show',$user->id)->with([
-            'type' => 'success',
-            'message' => 'El Usuario se Ha Editado Satisfactoriamente'
+        return redirect()->route('users.show',$user->id)->with([
+            'type' => 'floating',
+            'message' => 'El Usuario se Ha Editado Satisfactoriamente',
+            'level' => 'success'
         ]);
     }
 
@@ -91,8 +93,9 @@ class UserController extends Controller
         $user->delete();
 
         return to_route('users.index')->with([
-            'type' => 'success',
-            'message' => 'El Usuario se Ha Eliminado Satisfactoriamente'
+            'type' => 'floating',
+            'message' => 'El Usuario se Ha Eliminado Satisfactoriamente',
+            'level' => 'success'
         ]);
     }
 
@@ -107,8 +110,9 @@ class UserController extends Controller
         $usuario->forceDelete();
 
         return redirect()->route('users.index')->with([
-            'type' => 'success',
+            'type' => 'floating',
             'message' => 'Usuario Eliminado por Completo del Sistema Satisfactoriamente!.',
+            'level' => 'success'
         ]);
     }
     public function deletedIndex(int $id) //sin el id no lo detecta en el web.php
@@ -131,8 +135,9 @@ class UserController extends Controller
         User::withTrashed()->find($id)->restore();
         
         return redirect()->route('users.index')->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Usuario Restaurado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 
@@ -145,8 +150,9 @@ class UserController extends Controller
         User::onlyTrashed()->restore();
 
         return redirect()->route('users.index')->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Usuarios Restaurados Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 
@@ -169,8 +175,9 @@ class UserController extends Controller
         $user->update($attr);
 
         return to_route('users.show',$user->id)->with([
-            'type' => 'success',
-            'message' => 'Se a reseteado la Contraseña Satisfactoriamente.'
+            'type' => 'floating',
+            'message' => 'Se a reseteado la Contraseña Satisfactoriamente.',
+            'level' => 'success'
         ]);
     }
 }

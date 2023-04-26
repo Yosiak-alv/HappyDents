@@ -32,8 +32,9 @@ class PatientHospitalizationController extends Controller
         $hospitalization = Hospitalization::create($request->validated());
 
         return redirect()->route('pacientes.show',$hospitalization->patient_id)->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Hospitalizacion Creada Satisfactoriamente!.',
+            'level' => 'success'
 		]);
 
     }
@@ -50,9 +51,10 @@ class PatientHospitalizationController extends Controller
 
         $hospitalization->update($request->validated());
 
-        return redirect()->route('pacientes.show',$hospitalization->patient_id)->with([
-			'type' => 'success',
+        return to_route('pacientes.show',$hospitalization->patient_id)->with([
+            'type' => 'floating',
             'message' => 'Hospitalizacion Editada Satisfactoriamente!.',
+            'level' => 'success'
 		]);
 
     }
@@ -61,8 +63,9 @@ class PatientHospitalizationController extends Controller
 
         $hospitalization->delete();
         return back()->with([
-			'type' => 'success',
-            'message' => 'Hospitalizacion Eliminado Satisfactoriamente!.',
+            'type' => 'floating',
+            'message' => 'Hospitalizacion Eliminada Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 }

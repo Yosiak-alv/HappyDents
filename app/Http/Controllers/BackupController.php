@@ -43,8 +43,9 @@ class BackupController extends Controller
         } catch (Exception $e) {
             //dd($e->getMessage());
             return back()->with([
-                'type' => 'error',
-                'message' => $e->getMessage()
+                'type' => 'floating',
+                'message' => $e->getMessage(),
+                'level' => 'danger'
             ]);
         }
         //dd($name);
@@ -72,16 +73,18 @@ class BackupController extends Controller
                 ]); */
                 //dd(\Artisan::output());
                 return back()->with([
-                    'type' => 'success',
-                    'message' => 'El Respaldo se Realizo Correctamente.'
+                    'type' => 'floating',
+                    'message' => 'El Respaldo se Realizo Correctamente.',
+                    'level' => 'success'
                 ]);
             }
             abort(403,'THIS ACTION IS UNAUTHORIZED. '); 
            
         }catch(Exception $e){
             return back()->with([
-                'type' => 'error',
-                'message' => $e->getMessage()
+                'type' => 'floating',
+                'message' => $e->getMessage(),
+                'level' => 'danger'
             ]);
         }
         
@@ -95,16 +98,18 @@ class BackupController extends Controller
                 unlink(storage_path('app/HappyDents/'.$name));
 
                 return back()->with([
-                    'type' => 'success',
-                    'message' => 'El Respaldo se Elimino Correctamente.'
+                    'type' => 'floating',
+                    'message' => 'El Respaldo se Elimino Correctamente.',
+                    'level' => 'success'
                 ]);
             }
             abort(403,'THIS ACTION IS UNAUTHORIZED. ');
 
         } catch (Exception $e) {
             return back()->with([
-                'type' => 'error',
-                'message' => $e->getMessage()
+                'type' => 'floating',
+                'message' => $e->getMessage(),
+                'level' => 'danger'
             ]);
         }
     }

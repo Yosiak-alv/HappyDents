@@ -32,9 +32,10 @@ class PatientDiagnosticController extends Controller
 
         $diagnostic = Diagnostic::create($request->validated());
 
-        return redirect()->route('pacientes.show',$diagnostic->patient_id)->with([
-			'type' => 'success',
+        return to_route('pacientes.show',$diagnostic->patient_id)->with([
+            'type' => 'floating',
             'message' => 'Diagnostico Creado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
 
     }
@@ -54,9 +55,10 @@ class PatientDiagnosticController extends Controller
 
         $diagnostic->update($request->validated());
 
-        return redirect()->route('pacientes.show',$diagnostic->patient_id)->with([
-			'type' => 'success',
+        return to_route('pacientes.show',$diagnostic->patient_id)->with([
+            'type' => 'floating',
             'message' => 'Diagnostico Actualizado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
 
     }
@@ -66,8 +68,9 @@ class PatientDiagnosticController extends Controller
         
         $diagnostic->delete();
         return back()->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Diagnostico Eliminado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 

@@ -44,8 +44,9 @@ class TreatmentController extends Controller
         Treatment::create($attributes);
 
         return redirect()->route('tratamientos.index')->with([
-            'type' => 'success',
-            'message' => 'El Tratamiento se Ha Creado Satisfactoriamente!.'
+            'type' => 'floating',
+            'message' => 'El Tratamiento se Ha Creado Satisfactoriamente!.',
+            'level' => 'success'
         ]);
     }
 
@@ -82,9 +83,10 @@ class TreatmentController extends Controller
 
         $tratamiento->update($attributes);
 
-        return redirect()->route('tratamientos.index')->with([
-            'type' => 'success',
-            'message' => 'El Tratamiento se Ha Editado Satisfactoriamente!.'
+        return to_route('tratamientos.index')->with([
+            'type' => 'floating',
+            'message' => 'El Tratamiento se Ha Editado Satisfactoriamente!.',
+            'level' => 'success'
         ]);
     }
 
@@ -98,8 +100,9 @@ class TreatmentController extends Controller
         $tratamiento->delete();
 
         return redirect()->route('tratamientos.index')->with([
-            'type' => 'success',
-            'message' => 'El Tratamiento se Ha Eliminado Satisfactoriamente!.'
+            'type' => 'floating',
+            'message' => 'El Tratamiento se Ha Eliminado Satisfactoriamente!.',
+            'level' => 'success'
         ]);
     }
     public function forceDelete(int $id)
@@ -112,8 +115,9 @@ class TreatmentController extends Controller
         $tratamiento->forceDelete();
 
         return redirect()->route('tratamientos.index')->with([
-            'type' => 'success',
+            'type' => 'floating',
             'message' => 'Tratamiento Eliminado por Completo del Sistema Satisfactoriamente!.',
+            'level' => 'success'
         ]);
     }
     public function deletedIndex()
@@ -136,8 +140,9 @@ class TreatmentController extends Controller
         Treatment::withTrashed()->find($id)->restore();
         
         return redirect()->route('tratamientos.index')->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Tratamiento Restaurado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 
@@ -150,8 +155,9 @@ class TreatmentController extends Controller
         Treatment::onlyTrashed()->restore();
 
         return redirect()->route('tratamientos.index')->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Tratamientos Restaurados Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 }
