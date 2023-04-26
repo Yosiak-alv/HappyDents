@@ -60,8 +60,9 @@ class VisitController extends Controller
         Visit::create($result);
 
         return redirect()->route('visitas.index')->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Visita Creada Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 
@@ -107,9 +108,10 @@ class VisitController extends Controller
 
         $visita->update($result);
 
-        return redirect()->route('visitas.index')->with([
-			'type' => 'success',
+        return to_route('visitas.index')->with([
+            'type' => 'floating',
             'message' => 'Visita Editada Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 
@@ -125,8 +127,9 @@ class VisitController extends Controller
        $visita->delete();
 
        return back()->with([
-        '   type' => 'success',
-        '   message' => 'Visita Eliminada Satisfactoriamente!.',
+            'type' => 'floating',
+            'message' => 'Visita Eliminada Satisfactoriamente!.',
+            'level' => 'success'
        ]);
     }
 
@@ -140,8 +143,9 @@ class VisitController extends Controller
         $visita->forceDelete();
 
         return redirect()->route('visitas.index')->with([
-            'type' => 'success',
+            'type' => 'floating',
             'message' => 'Visita Eliminada por Completo del Sistema Satisfactoriamente!.',
+            'level' => 'success'
         ]);
     }
 
@@ -164,8 +168,9 @@ class VisitController extends Controller
         Visit::withTrashed()->find($id)->restore();
         
         return redirect()->route('visitas.index')->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Visita Restaurada Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
     public function restoreAll()
@@ -177,8 +182,9 @@ class VisitController extends Controller
         Visit::onlyTrashed()->restore();
 
         return redirect()->route('visitas.index')->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Visitas Restauradas Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 

@@ -25,7 +25,7 @@
     };
 
     const closeModal = () => {
-        confirmingUserDeletion.value = false;
+        confirmingPatientDeletion.value = false;
     };
 
     const deletePatient = () => {

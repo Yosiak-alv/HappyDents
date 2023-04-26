@@ -37,8 +37,9 @@ class PatientFamilyBackgroundController extends Controller
         $result = FamilyBackground::create($request->validated());
 
         return redirect()->route('pacientes.show',$result->patient_id)->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Antecedente Familiar Creado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
 
     }
@@ -58,9 +59,10 @@ class PatientFamilyBackgroundController extends Controller
 
         $familyBackground->update($request->validated());
 
-        return redirect()->route('pacientes.show',$familyBackground->patient_id)->with([
-			'type' => 'success',
+        return to_route('pacientes.show',$familyBackground->patient_id)->with([
+            'type' => 'floating',
             'message' => 'Antecedente Familiar Actualizado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 
@@ -69,8 +71,9 @@ class PatientFamilyBackgroundController extends Controller
 
         $familyBackground->delete();
         return back()->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Antecedente Familiar Eliminado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 }

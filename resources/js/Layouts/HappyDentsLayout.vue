@@ -85,9 +85,6 @@
        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <Flash/>
-                </div>
-                <div class="col-md-12">
                     <slot />
                 </div>
                 
@@ -95,11 +92,11 @@
        </div>
         
     </main>
-
+    <flash-message/>
 </template>
 
 <script setup>
-    import Flash from '@/Components/Flash.vue';
+    import FlashMessage from '@/Components/Flash.vue';
     import  {Link,usePage } from '@inertiajs/vue3';
     import Dropdown from '@/Components/Dropdown.vue';
     import DropdownLink from '@/Components/DropdownLink.vue';

@@ -39,8 +39,9 @@ class PatientOdontogramController extends Controller
         $paciente->detentions()->attach($request->validatedDetentionsId());
 
         return redirect()->route('pacientes.show',$id)->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Odontograma Creado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
     public function edit(int $id){
@@ -73,9 +74,10 @@ class PatientOdontogramController extends Controller
 
         $paciente->detentions()->sync($request->validatedDetentionsId());
         
-        return redirect()->route('pacientes.show',$id)->with([
-			'type' => 'success',
+        return to_route('pacientes.show',$id)->with([
+            'type' => 'floating',
             'message' => 'Odontograma Editado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
     public function remove(int $id){
@@ -87,8 +89,9 @@ class PatientOdontogramController extends Controller
         $paciente->detentions()->sync([]); //agrega solo lo del array lo demas hace detach
         
         return redirect()->route('pacientes.show',$id)->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Odontograma Eliminado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
         
     }

@@ -34,8 +34,9 @@ class PatientSystemController extends Controller
         $paciente->systems()->attach($request->validatedSystemId());
 
         return redirect()->route('pacientes.show',$id)->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Sistema Inmunologico Creado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 
@@ -60,9 +61,10 @@ class PatientSystemController extends Controller
 
         $paciente->systems()->sync($request->validatedSystemId());
 
-        return redirect()->route('pacientes.show',$id)->with([
-			'type' => 'success',
+        return to_route('pacientes.show',$id)->with([
+            'type' => 'floating',
             'message' => 'Sistema Inmunologico Editado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 
@@ -75,9 +77,10 @@ class PatientSystemController extends Controller
         $paciente = Patient::find($id);
         $paciente->systems()->sync([]); //agrega solo lo del array lo demas hace detach
 
-        return redirect()->route('pacientes.show',$id)->with([
-			'type' => 'success',
+        return to_route('pacientes.show',$id)->with([
+            'type' => 'floating',
             'message' => 'Sistema Inmunologico Eliminado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
         
     }

@@ -7,6 +7,7 @@ use App\Models\clinic\BranchOffice;
 use App\Models\clinic\Detention;
 use App\Models\clinic\Patient;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
@@ -48,13 +49,13 @@ class PatientController extends Controller
      */
     public function store(PatientCreateUpdateRequest $request, $paciente = null)
     {
-        //dd($request->validated());
         Patient::create($request->validated());
 
         return redirect()->route('pacientes.index')->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Paciente Creado Satisfactoriamente!.',
-		]);
+            'level' => 'success'
+        ]);
     }
 
     /**
@@ -69,7 +70,6 @@ class PatientController extends Controller
             //'patient' => Patient::with(['hospitalizations','detentions','diagnostics','systems','family_backgrounds.system','visits.treatment'])->find($paciente->id),
             'patient' => $paciente->load(['hospitalizations','detentions','diagnostics','systems','family_backgrounds.system','visits.treatment']),
             'branch_offices' => BranchOffice::select(['id','name'])->get(),
-            
         ]);
     }
 
@@ -83,10 +83,10 @@ class PatientController extends Controller
     {
         $paciente->update($request->validated());
 
-        //return Redirect::route('patients.show',$patient->id);
         return back()->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Paciente Actualizado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 
@@ -99,9 +99,10 @@ class PatientController extends Controller
     {
         $paciente->delete();
         
-        return redirect()->route('pacientes.index')->with([
-			'type' => 'success',
+        return to_route('pacientes.index')->with([
+            'type' => 'floating',
             'message' => 'Paciente Eliminado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 
@@ -114,8 +115,9 @@ class PatientController extends Controller
         $paciente->forceDelete();
 
         return redirect()->route('pacientes.index')->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Paciente Eliminado por Completo del Sistema Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
     public function deleteIndex()
@@ -137,8 +139,9 @@ class PatientController extends Controller
         Patient::withTrashed()->find($id)->restore();
 
         return redirect()->route('pacientes.index')->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Paciente Restaurado Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
     public function restoreAll()
@@ -149,8 +152,9 @@ class PatientController extends Controller
         Patient::onlyTrashed()->restore();
 
         return redirect()->route('pacientes.index')->with([
-			'type' => 'success',
+            'type' => 'floating',
             'message' => 'Pacientes Restaurados Satisfactoriamente!.',
+            'level' => 'success'
 		]);
     }
 }
