@@ -1,10 +1,6 @@
 <script setup>
-    import {Link,router, usePage} from '@inertiajs/vue3';  
-    //import InputLabel from "@/Components/InputLabel.vue";
-    //import InputError from '@/Components/InputError.vue';
-    //import PrimaryButton from '@/Components/PrimaryButton.vue';
     import InputError from "@/Components/InputError.vue";    
-    import { ref,watch,computed } from 'vue';
+    
     defineProps({
         form: {
             type: Object,
@@ -18,9 +14,6 @@
         detentions:{
             type:Object,
             required:true
-        },
-        conditions:{
-            type:Object,
         }
     });
     defineEmits(['submit.prevent']);
@@ -39,20 +32,17 @@
                 <div class="row">
                     <div class="mb-3">
                         <div class="row">
-                            <div class="col-6" v-for="(value,index) in detentions" :key="value.id">
+                            {{form.condition}}
+                            <div class="col-6" v-for="(detention,index) in detentions" :key="detention.id">
                                 
-                                <input type="checkbox" :value="value.id" v-model="form.detention_id"> {{value.name}}
+                                <input type="checkbox" :value="detention.id" v-model="form.detention_id"> {{detention.name}} 
                                 <textarea id="condition"
                                     class="form-control rounded"
-                                    v-model="form.condition[index]"
+                                    v-model="form.condition[detention.id]"
                                 ></textarea> 
-                               
-                               
+                                <InputError class="mt-2" :message="form.errors.condition" />
                             </div>
-                            
-                          
                         </div>
-                       
                         <InputError class="mt-2" :message="form.errors.detention_id" />
                     </div>
                    

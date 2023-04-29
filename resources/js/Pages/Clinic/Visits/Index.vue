@@ -89,10 +89,10 @@
                                     <td>
                                         <Link :href="route('visitas.edit',visit.id)" as="button" method="get" class="btn btn-outline-success">Editar</Link>
                                         
-                                        <button @click="confirmVisitDeletion(visit.id)" class="btn btn-outline-danger">Eliminar</button>
+                                        <button @click="confirmVisitDeletion(visit.id)" class="btn btn-outline-danger ml-3">Eliminar</button>
                                         <!--  revisar a -->
                                         <a v-if="visit.patient != null " 
-                                        :href="route('visitas.InvoicePDF',visit.id)"  class="btn btn-outline-secondary"><i class="bi bi-receipt"></i></a>
+                                        :href="route('visitas.InvoicePDF',visit.id)"  class="btn btn-outline-secondary ml-3"><i class="bi bi-receipt"></i></a>
 
                                     </td>
                                 </tr>

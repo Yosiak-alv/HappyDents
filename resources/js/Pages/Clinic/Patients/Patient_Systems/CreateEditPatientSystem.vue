@@ -16,11 +16,16 @@
         systems:{
             type:Object,
             required:true
+        },
+        patient_systems_conditions:{
+            type:Object,
+            required:false
         }
     });
     const form = useForm({
         patient_id: props.patient_systems?.patient_id ?? props.patient.id,
         system_id: props.patient_systems ?? [],
+        condition: props.patient_systems_conditions ?? []
     });
     const store = () =>{
         form.post(route('pacienteSistema.store',form.patient_id));

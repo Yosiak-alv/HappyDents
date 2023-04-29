@@ -85,7 +85,7 @@
                                     <td v-if="usePage().props.auth.user.role.type != 'asistente dental'">
                                         <Link :href="route('pacientes.restore',patient.id)" as="button" method="post" class="btn btn-outline-success">Restaurar</Link>
                                         <button v-if="usePage().props.auth.user.role.type == 'administrador'"
-                                        @click="confirmPatientDeletion(patient.id)" class="btn btn-outline-danger">Force-Delete</button>
+                                        @click="confirmPatientDeletion(patient.id)" class="btn btn-outline-danger ml-3">Force-Delete</button>
                                     </td>
                                 </tr>
                             </tbody>
