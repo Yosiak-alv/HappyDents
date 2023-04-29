@@ -26,11 +26,17 @@ class PatientSystemCreateEditRequest extends FormRequest
         return [
             'system_id' => 'required|array',
             'system_id.*' =>'numeric|gt:0|decimal:0|max:255', //representa la iteracion de cada una 
+            'condition'  => 'required|array',
+            'condition.*' => 'max:5000'
         ];
     }
 
-    public function validatedSystemId():array
+    public function validatedSystemId()
     {
-        return $this->only('system_id')['system_id'];
+        return collect($this->only('system_id')['system_id']);
+    }
+    public function conditions(): array
+    {
+        return $this->only('condition')['condition'];
     }
 }

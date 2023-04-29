@@ -46,10 +46,12 @@ class PatientSystemController extends Controller
         }
         
         $paciente = Patient::select(['id','name'])->get()->find($id);
+        //dd($paciente->systems()->select(['id','condition'])->get()->pluck(['id','condition']));
         return Inertia::render('Clinic/Patients/Patient_Systems/CreateEditPatientSystem',[
             'systems'=> System::all(['id','name']),
             'patient' => $paciente,
-            'patient_systems' => $paciente->systems()->select('id')->get()->pluck('id')
+            'patient_systems' => $paciente->systems()->select('id')->get()->pluck('id'),
+            'patient_systems_conditions' => $paciente->systems()->select(['system_id','condition'])->get()->pluck('condition','system_id')
         ]);
     }
 
@@ -59,7 +61,14 @@ class PatientSystemController extends Controller
         }
         $paciente = Patient::find($id);
 
-        $paciente->systems()->sync($request->validatedSystemId());
+        $conditions = collect([]);
+        
+        foreach ($request->conditions() as $index => $condition) {
+            if ($request->validatedSystemId()->contains($index)) {
+                $conditions->put($index, [ 'condition' => $condition ]);
+            }
+        }
+        $paciente->systems()->sync($conditions);
 
         return to_route('pacientes.show',$id)->with([
             'type' => 'floating',
