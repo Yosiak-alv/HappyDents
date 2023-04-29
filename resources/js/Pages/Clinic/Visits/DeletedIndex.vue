@@ -86,7 +86,7 @@
                                         <Link :href="route('visitas.restore',visit.id)" as="button" method="post" class="btn btn-outline-success">Restaurar</Link>
                                         
                                         <button v-if="usePage().props.auth.user.role.type == 'administrador'" 
-                                        @click="confirmVisitDeletion(visit.id)" class="btn btn-outline-danger">Force-Delete</button>
+                                        @click="confirmVisitDeletion(visit.id)" class="btn btn-outline-danger ml-3">Force-Delete</button>
                                         
                                     </td>
                                 </tr>

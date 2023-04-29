@@ -73,7 +73,7 @@
                     <td class="text-center" v-if="usePage().props.auth.user.role.type == 'administrador'
                     || usePage().props.auth.user.role.type == 'doctor'">
                         <Link :href="route('pacienteHospitalizacion.edit', hospitalization.id)"  as="button" class="btn btn-outline-success">Editar</Link>
-                        <button @click="confirmPatientDeletion(hospitalization.id)" class="btn btn-outline-danger">Eliminar</button>
+                        <button @click="confirmPatientDeletion(hospitalization.id)" class="btn btn-outline-danger ml-3">Eliminar</button>
                     </td>
                 
                 </tr>

@@ -17,10 +17,6 @@
         systems:{
             type:Object,
             required:true
-        },
-        patient_id:{
-            type:Number,
-            required:true
         }
     });
     defineEmits(['submit.prevent']);
@@ -37,22 +33,20 @@
             <form @submit.prevent="$emit('submit.prevent')" class="mt-4">
                 <div class="row">
                     <div class="mb-3">
-                        <label for="system_id" class="form-label">Sistema Unmunologico</label>
-                        <select multiple
-                            id="system_id" 
-                            class="form-select rounded" 
-                            v-model="form.system_id" 
-                            required
-                        >
-                            <option  v-for="system in systems " :value="system.id">
-                                {{system.name}}
-                            </option>
-                        </select>
+                        <div class="row">
+                            <div class="col-6" v-for="(system,index) in systems" :key="system.id">
+                                <input type="checkbox" :value="system.id" v-model="form.system_id"> {{system.name}}
+                                <textarea id="condition"
+                                    class="form-control rounded"
+                                    v-model="form.condition[system.id]"
+                                ></textarea> 
+                                <InputError class="mt-2" :message="form.errors.condition" />
+                            </div>
+                        </div>
                         <InputError class="mt-2" :message="form.errors.system_id" />
                     </div>
                     <div class="col-12 text-right">
                         <button class="btn btn-primary mt-3 " :disabled="form.processing" >{{ updating ? 'Actualizar' : 'Crear' }}</button>
-                        
                     </div>
                 </div>
             </form>

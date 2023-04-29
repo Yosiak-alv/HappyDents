@@ -42,7 +42,7 @@ watch(search, debounce(value => {
                             </div>
                             <div class="col-md-6 text-right">
                                 <Link :href="route('pacientes.create')" as="button" method="get" class="btn btn-primary">Crear Nuevo Paciente</Link>
-                                <Link :href="route('pacientes.deleteIndex',1)" as="button" method="get" class="btn btn-danger">Pacientes Eliminados</Link>
+                                <Link :href="route('pacientes.deleteIndex',1)" as="button" method="get" class="btn btn-danger ml-2">Pacientes Eliminados</Link>
 
                             </div>
                         </div>

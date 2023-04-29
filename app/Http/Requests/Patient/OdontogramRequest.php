@@ -31,8 +31,13 @@ class OdontogramRequest extends FormRequest
         ];
     }
 
-    public function validatedDetentionsId(): array
+    public function validatedDetentionsId()
     {
-        return $this->only('detention_id')['detention_id'];
+        return collect($this->only('detention_id')['detention_id']);
+    }
+
+    public function conditions(): array
+    {
+        return $this->only('condition')['condition'];
     }
 }

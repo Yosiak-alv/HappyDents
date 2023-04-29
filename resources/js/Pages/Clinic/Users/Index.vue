@@ -79,7 +79,7 @@
                                         as="button" method="get" class="btn btn-outline-success">Mostrar</Link>
                                         <button 
                                         @click="confirmUserDeletion(user.id)" :disabled="usePage().props.auth.user.id == user.id"
-                                        class="btn btn-outline-danger">Eliminar</button>
+                                        class="btn btn-outline-danger ml-3">Eliminar</button>
                                     </td>
                                 </tr>
                             </tbody>

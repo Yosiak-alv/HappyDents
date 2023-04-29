@@ -69,7 +69,7 @@
                     <td>{{visit.date }}</td>
                     <td class="text-center" v-if="usePage().props.auth.user.role.type != 'asistente dental'">
                         <Link :href="route('pacienteVisitas.edit',visit.id)" as="button" method="get" class="btn btn-outline-success">Editar</Link>
-                        <button @click="confirmVisitDeletion(visit.id)" class="btn btn-outline-danger">Eliminar</button>
+                        <button @click="confirmVisitDeletion(visit.id)" class="btn btn-outline-danger ml-3">Eliminar</button>
                     </td>
                 </tr>
             </tbody>

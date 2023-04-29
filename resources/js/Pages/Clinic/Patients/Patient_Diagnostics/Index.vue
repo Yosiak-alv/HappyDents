@@ -83,7 +83,7 @@
                     <td class="text-center" v-if="usePage().props.auth.user.role.type == 'administrador'
                     || usePage().props.auth.user.role.type == 'doctor'">
                         <button @click="edit(diagnostic.id)" class="btn btn-outline-success">Editar</button>
-                        <button @click="confirmPatientDeletion(diagnostic.id)" class="btn btn-outline-danger">Eliminar</button>
+                        <button @click="confirmPatientDeletion(diagnostic.id)" class="btn btn-outline-danger ml-3">Eliminar</button>
                     </td>
                 
                 </tr>

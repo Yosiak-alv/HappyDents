@@ -52,11 +52,9 @@
                         <div class="row mt-5">
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-6">
                                         <Link :href="route('tratamientos.create')" as="button" method="get" class="btn btn-primary">Crear Nuevo Tratamiento</Link>
-                                    </div>
-                                    <div class="col-4">
-                                        <Link :href="route('tratamientos.deletedIndex')" class="btn btn-danger">Tratamientos Eliminados</Link>
+                                        <Link :href="route('tratamientos.deletedIndex')" class="btn btn-danger ml-3">Tratamientos Eliminados</Link>
                                     </div>
                                 </div> 
                             </div>
@@ -77,7 +75,7 @@
                                     <td>{{treatment.price}}</td>
                                     <td>
                                         <Link :href="route('tratamientos.edit',treatment.id)" as="button" method="get" class="btn btn-outline-success">Editar</Link>
-                                        <button @click="confirmTreatmentDeletion(treatment.id)" class="btn btn-outline-danger">Eliminar</button>
+                                        <button @click="confirmTreatmentDeletion(treatment.id)" class="btn btn-outline-danger ml-3">Eliminar</button>
                                     </td>
                                 </tr>
                             </tbody>

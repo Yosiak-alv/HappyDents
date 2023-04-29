@@ -84,7 +84,7 @@
                                     <td>
                                         <Link :href="route('users.restore',user.id)" as="button" method="post" class="btn btn-outline-success">Restaurar</Link>
                                         <button 
-                                        @click="confirmUserDeletion(user.id)" class="btn btn-outline-danger">Force-Delete</button>
+                                        @click="confirmUserDeletion(user.id)" class="btn btn-outline-danger ml-3">Force-Delete</button>
                                         
                                     </td>
                                 </tr>
