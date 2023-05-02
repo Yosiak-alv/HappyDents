@@ -172,7 +172,7 @@ return [
                 'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
                 'name' => env('MAIL_FROM_NAME', 'Example'),
             ],
-        ],
+        ], 
 
         'slack' => [
             'webhook_url' => '',
@@ -201,7 +201,7 @@ return [
              */
             'avatar_url' => '',
         ],
-    ],
+    ], 
 
     /*
      * Here you can specify which backups should be monitored.
