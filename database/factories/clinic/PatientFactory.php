@@ -24,14 +24,14 @@ class PatientFactory extends Factory
             'lastname' => fake()->lastName(),
             'genre' => fake()->randomElement(['Mujer','Hombre']),
             'email' =>fake()->email(),
-            'phone' => fake()->phoneNumber(),
-            'second_phone' => fake()->phoneNumber(),
+            'phone' => fake()->numerify('####-####'),
+            'second_phone' => fake()->numerify('####-####'),
             'address' => fake()->streetAddress(),
             'occupation' => fake()->word(),
             'birthdate' => fake()->date(),
             'branch_office_id' => $branch->id,
             'contact_name' =>fake()->name(),
-            'contact_phone' =>fake()->phoneNumber(),
+            'contact_phone' =>fake()->numerify('####-####'),
             'contact_email' =>fake()->freeEmail()
         ];
     }
