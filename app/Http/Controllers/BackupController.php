@@ -41,16 +41,13 @@ class BackupController extends Controller
             }
             abort(403,'THIS ACTION IS UNAUTHORIZED. '); 
         } catch (Exception $e) {
-            //dd($e->getMessage());
+            
             return back()->with([
                 'type' => 'floating',
                 'message' => $e->getMessage(),
                 'level' => 'danger'
             ]);
         }
-        //dd($name);
-
-        //Storage::download();
     }
     /**
      * Store a newly created resource in storage.
@@ -59,19 +56,11 @@ class BackupController extends Controller
     {
         try{
             if(request()->user()->role->type == 'administrador'){
-                /*  $command = 'backup:run'; 
+                $command = 'backup:run'; 
                 $params = [ '--only-db' => true,
                             '--disable-notifications' => true ]; 
-                \Artisan::call($command, $params);  */
-                /* \Artisan::command('backup:run --only-db --disable-notifications',function(){
+                \Artisan::call($command, $params);  
 
-                })->purpose('crear un respaldo de la base de datos.'); */
-                //Artisan::call('backup:run --only-db --disable-notifications');
-                /* Artisan::call('backup:run',[
-                    '--only-db' => true,
-                    '--disable-notifications' => true
-                ]); */
-                //dd(\Artisan::output());
                 return back()->with([
                     'type' => 'floating',
                     'message' => 'El Respaldo se Realizo Correctamente.',
