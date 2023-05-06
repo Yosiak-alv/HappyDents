@@ -87,6 +87,10 @@
 
     </main>
     <flash-message />
+    <footer class="text-center text-white p-4" style="background-color: #00BFFF;">
+        <p>&copy; 2023 Happy Dents. All rights reserved.</p>
+        <Link href="#" class="mx-3">Manual de Usuario</Link>
+    </footer>
 </template>
 
 <script setup>
