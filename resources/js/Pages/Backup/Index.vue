@@ -81,7 +81,7 @@ const destroyBackup2 = (file) =>{
                                         <!--<a> porque sino la respuesta no funciona de download-->
                                         <a :href="route('backups.download', file)" class="btn btn-outline-success"><i
                                                 class="bi bi-arrow-down"></i></a>
-                                        <button @click="destroyBackup2(file)" class="btn btn-outline-danger">
+                                        <button @click="destroyBackup2(file)" class="btn btn-outline-danger ml-2">
                                             <i class="bi bi-trash"></i></button>
                                            <!--  <button @click="confirmBackupDeletion()" :ref="getfile(file)" class="btn btn-outline-danger">
                                             <i class="bi bi-trash"></i></button> -->
