@@ -16,26 +16,6 @@
         $('#datatable').DataTable();
     });
 
-    //---Modal Section----
-    const confirmingUserDeletion = ref(false);
-    const selectedUser = ref(0);
-    
-    const confirmUserDeletion = (id) => {
-        confirmingUserDeletion.value = true;
-        selectedUser.value = id;
-    };
-
-    const closeModal = () => {
-        confirmingUserDeletion.value = false;
-    };
-
-    const deleteUser = () => {
-        router.delete(route('users.destroy',selectedUser.value),{
-            preserveScroll: true,
-            onSuccess: () => closeModal(),
-            onError: () => closeModal(),
-        });
-    };
 </script>
 <style>
     @import 'datatables.net-dt';
@@ -77,9 +57,6 @@
                                     <td>
                                         <Link :href="route('users.show',user.id)" :disabled="usePage().props.auth.user.id == user.id"
                                         as="button" method="get" class="btn btn-outline-success">Mostrar</Link>
-                                        <button 
-                                        @click="confirmUserDeletion(user.id)" :disabled="usePage().props.auth.user.id == user.id"
-                                        class="btn btn-outline-danger ml-3">Eliminar</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -89,34 +66,6 @@
             </div>
         </div>
     </HappyDentsLayout>
-
-    <Modal :show="confirmingUserDeletion" @close="closeModal">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h4 class="h4 p-4">
-                        Seguro de Eliminar el Registro ?
-                    </h4>
-                </div>
-                <div class="col-12">
-                    <p class="p p-4"> 
-                        Si lo Elimina, el registro siempre permanecera en el sistema con estado inactivo, considere
-                        que otros registros que utilizen este, apareceran vacios, esperando su edicion o restauracion 
-                        de este registro.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="d-flex flex-row-reverse border">
-            <div class="p-2 ">
-                <button class="btn btn-secondary" @click="closeModal">Cancelar</button>
-            </div>
-            <div class="p-2">
-                <button class="btn btn-danger" @click="deleteUser">Confirmar</button>
-            </div>
-        </div>
-    </Modal>
 
 </template>
 
