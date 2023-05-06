@@ -148,7 +148,7 @@ return [
      * You can also use your own notification classes, just make sure the class is named after one of
      * the `Spatie\Backup\Notifications\Notifications` classes.
      */
-    'notifications' => [
+     'notifications' => [
 
         'notifications' => [
             \Spatie\Backup\Notifications\Notifications\BackupHasFailedNotification::class => ['mail'],
@@ -172,7 +172,7 @@ return [
                 'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
                 'name' => env('MAIL_FROM_NAME', 'Example'),
             ],
-        ],
+        ], 
 
         'slack' => [
             'webhook_url' => '',
@@ -201,7 +201,7 @@ return [
              */
             'avatar_url' => '',
         ],
-    ],
+    ], 
 
     /*
      * Here you can specify which backups should be monitored.

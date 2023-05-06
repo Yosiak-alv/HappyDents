@@ -9,12 +9,6 @@ const props = defineProps({
         required:true
     }
 });
-const destroy = (id) =>{
-        if(confirm('Esta seguro de eliminar el Usuario ' + props.user.name + ' ?')){
-            router.delete(route('users.destroy',id),)
-        }
-    };
-
 //---Modal Section----
 const confirmingUserDeletion = ref(false);
 

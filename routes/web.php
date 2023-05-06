@@ -10,14 +10,12 @@ use App\Http\Controllers\Clinic\PatientOdontogramController;
 use App\Http\Controllers\Clinic\PatientSystemController;
 use App\Http\Controllers\Clinic\PatientVisitController;
 use App\Http\Controllers\clinic\VisitController;
-use App\Http\Controllers\PatientDeletedController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Models\clinic\Patient;
 use App\Models\clinic\Treatment;
 use App\Models\clinic\Visit;
 use App\Models\User;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 /*
@@ -128,14 +126,8 @@ Route::middleware('auth')->group(function(){
 });
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-    ]);
+    return redirect('/login');
 });
-
-//Route::get('/dashboard', function () {
-    //return Inertia::render('Dashboard');
-//})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
