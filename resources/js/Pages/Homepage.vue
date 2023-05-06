@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-md-6 mt-5">
                     <h1 class="h3">Happy Dents</h1>
-                    <p>
+                    <p class="text-justify">
                         Somos una moderna clínica dental ubicada en el corazón de la
                         ciudad. Nuestros dentistas experimentados y nuestro amable personal brindan
                         servicios dentales de alta calidad para pacientes de todas las edades.
@@ -88,12 +88,6 @@
             </div>
         </div>
     </Layout>
-    <footer class="text-center text-white p-4" style="background-color: #00BFFF;">
-        <p>&copy; 2023 Happy Dents. All rights reserved.</p>
-        <Link href="#" class="mx-3">Privacy Policy</Link>
-        <Link href="#" class="mx-3">Terms of Service</Link>
-        <Link href="#" class="mx-3">Contact Us</Link>
-    </footer>
 </template>
 
 <script setup>
