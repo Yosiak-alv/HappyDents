@@ -56,6 +56,6 @@ it('Permite Crear un Paciente', function () {
         'contact_phone' => '2270-6049',
         'contact_email' => 'diego@example.com'
     ]);
-    //$response->assertStatus(303);
+    
     $response->assertInertia(fn (Assert $page) => $page->where('flash.level', 'success'));
 });
