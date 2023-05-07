@@ -14,6 +14,24 @@ class SystemSeeder extends Seeder
      */
     public function run()
     {
-        System::factory(5)->create();
+
+        $Systems = [
+            'Sistema Nervioso',
+            'Sistema Endocrino',
+            'Sistema Circulatorio',
+            'Sistema Digestivo',
+            'Sistema Respiratorio',
+            'Sistema Excretor',
+            'Sistema Reproductor',
+            'Sistema Muscular',
+            'Sistema Esqueletico',
+            'Sistema Inmunologico',
+            'Sistema Linfatico',
+            'Sistema Integumentario'
+        ];
+
+        System::factory(count($Systems))->sequence(fn ($sequence)=>[
+            'name' => $Systems[$sequence->index]
+        ])->create();
     }
 }
