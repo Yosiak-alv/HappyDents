@@ -185,3 +185,8 @@
 1683476599-2996-706595481,1683476599.2191,GET,/backupss,"App\Http\Controllers\BackupController@index",200,172.76096343994,request
 1683476600-2852-1760173233,1683476600.2167,GET,/backups,"App\Http\Controllers\BackupController@store",302,458.6021900177,request
 1683476600-7715-1983074563,1683476600.6824,GET,/backupss,"App\Http\Controllers\BackupController@index",200,186.3968372345,request
+1683477052-0550-1250366847,1683477051.9704,GET,/pacientes,"App\Http\Controllers\Clinic\PatientController@index",200,178.51805686951,request
+1683477054-8643-1805199465,1683477054.8012,GET,/pacientes/1,"App\Http\Controllers\Clinic\PatientController@show",200,145.64514160156,request
+1683477061-5903-1370732301,1683477061.5222,GET,/paciente/diagnostico/1?preserveScroll=true,"App\Http\Controllers\Clinic\PatientDiagnosticController@create",200,140.86604118347,request
+1683477069-3548-126757310,1683477069.29,GET,/paciente/diagnostico/1/edit?preserveScroll=true,"App\Http\Controllers\Clinic\PatientDiagnosticController@edit",200,138.41795921326,request
+1683477478-0248-2073386741,1683477477.9462,GET,/paciente/odontograma/1/edit,"App\Http\Controllers\Clinic\PatientOdontogramController@edit",200,172.52206802368,request
