@@ -1018,3 +1018,10 @@
 1683418923-9608-598341078,1683418923.8858,GET,/pacientes,"App\Http\Controllers\Clinic\PatientController@index",200,160.90202331543,request
 1683419435-5291-889845732,1683419435.4335,GET,/visitas,"App\Http\Controllers\clinic\VisitController@index",200,196.68912887573,request
 1683419438-0533-1307008369,1683419437.9857,GET,/pacientes,"App\Http\Controllers\Clinic\PatientController@index",200,147.90415763855,request
+1683426507-1781-606381795,1683426507.0477,GET,/,Closure,302,253.08299064636,request
+1683426507-4012-1216312938,1683426507.3108,GET,/login,"App\Http\Controllers\Auth\AuthenticatedSessionController@create",302,161.10920906067,request
+1683426507-5458-1734534705,1683426507.48,GET,/home,Closure,200,156.30698204041,request
+1683426516-4944-663374991,1683426516.4291,GET,/tratamientos,"App\Http\Controllers\clinic\TreatmentController@index",200,139.42193984985,request
+1683426647-4814-315688566,1683426647.3966,GET,/visitas,"App\Http\Controllers\clinic\VisitController@index",200,175.52804946899,request
+1683426659-6688-1490755794,1683426659.6044,GET,/visitas,"App\Http\Controllers\clinic\VisitController@index",200,138.95511627197,request
+1683426667-1484-1489902220,1683426667.0843,GET,/pacientes,"App\Http\Controllers\Clinic\PatientController@index",200,142.67420768738,request
