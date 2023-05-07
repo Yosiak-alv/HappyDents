@@ -190,3 +190,8 @@
 1683477061-5903-1370732301,1683477061.5222,GET,/paciente/diagnostico/1?preserveScroll=true,"App\Http\Controllers\Clinic\PatientDiagnosticController@create",200,140.86604118347,request
 1683477069-3548-126757310,1683477069.29,GET,/paciente/diagnostico/1/edit?preserveScroll=true,"App\Http\Controllers\Clinic\PatientDiagnosticController@edit",200,138.41795921326,request
 1683477478-0248-2073386741,1683477477.9462,GET,/paciente/odontograma/1/edit,"App\Http\Controllers\Clinic\PatientOdontogramController@edit",200,172.52206802368,request
+1683477595-3104-396966861,1683477595.2426,GET,/paciente/odontograma/1/edit,"App\Http\Controllers\Clinic\PatientOdontogramController@edit",200,150.79092979431,request
+1683477836-6842-1811448780,1683477836.5943,GET,/paciente/hospitalizacion/4/edit,"App\Http\Controllers\Clinic\PatientHospitalizationController@edit",200,193.99690628052,request
+1683477843-8271-1262446730,1683477843.7622,GET,/paciente/hospitalizacion/6/edit,"App\Http\Controllers\Clinic\PatientHospitalizationController@edit",200,138.15808296204,request
+1683477848-2270-645972014,1683477848.1622,GET,/paciente/hospitalizacion/4/edit,"App\Http\Controllers\Clinic\PatientHospitalizationController@edit",200,138.86499404907,request
+1683478050-3355-67107131,1683478050.2507,GET,/paciente/hospitalizacion/1,"App\Http\Controllers\Clinic\PatientHospitalizationController@create",200,175.29988288879,request
