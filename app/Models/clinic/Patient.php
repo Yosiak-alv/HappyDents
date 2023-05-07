@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Patient extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     public $timestamps = false;
 
     //los filtros 
@@ -31,7 +32,7 @@ class Patient extends Model
     }
     public function detentions() : BelongsToMany
     {
-        return $this->belongsToMany(Detention::class,'odontograms');
+        return $this->belongsToMany(Detention::class,'odontograms')->withPivot('condition');
     }
     public function hospitalizations() : hasMany
     {
@@ -44,7 +45,7 @@ class Patient extends Model
 
     public function systems() : BelongsToMany
     {
-        return $this->belongsToMany(System::class ,'patient_systems');
+        return $this->belongsToMany(System::class ,'patient_systems')->withPivot('condition');
     }
     public function family_backgrounds() : hasMany
     {

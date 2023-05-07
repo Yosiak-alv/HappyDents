@@ -20,10 +20,11 @@ class VisitFactory extends Factory
     {
         $patient = Patient::inRandomOrder()->limit(1)->first();
         $treatment = Treatment::inRandomOrder()->limit(1)->first();
+        $payment = number_format((float)(($treatment->price*0.05) + $treatment->price), 2, '.', '');
         return [
             'patient_id' => $patient->id,
             'treatment_id' =>$treatment->id,
-            'payment' => fake()->randomFloat(2,5,500)
+            'payment' => $payment
         ];
     }
 }

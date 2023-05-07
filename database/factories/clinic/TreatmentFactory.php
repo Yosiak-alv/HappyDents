@@ -17,7 +17,7 @@ class TreatmentFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->word(4,true),
+            'name' => fake()->word(),
             'price' => fake()->randomFloat(2,5,500)
         ];
     }

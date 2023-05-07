@@ -24,7 +24,7 @@
 <template>
     <HappyDentsLayout>
         <Head title="Paciente-Diagnostico"/>
-            <div class="container">
+            <div class="container position-absolute top-50 start-50 translate-middle">
                 <div class="row">
                     <div v-if="props.patient_diagnostic == null">
                         <div class="col-md-12 text-center mb-4">
@@ -33,7 +33,7 @@
                         </div>
                         <div class="col-md-10 offset-md-1 p-5 bg-light border rounded-3">
                             
-                            <PatientDiagnosticForm :form="form" @submit.prevent="form.post(route('pacienteDiagnostico.store',form.patient_id))"/>
+                            <PatientDiagnosticForm :form="form" @submit.prevent="form.post(route('pacienteDiagnostico.store',form.patient_id),{preserveScroll:true})"/>
                         </div>
                     </div>
                     <div v-else>
@@ -42,7 +42,7 @@
                                 <p class="p">{{ patient.name}}</p>
                         </div>    
                         <div class="col-md-10 offset-md-1 p-5 bg-light border rounded-3">
-                            <PatientDiagnosticForm :updating="true" :form="form" @submit.prevent="form.patch(route('pacienteDiagnostico.update',form.id))"/>
+                            <PatientDiagnosticForm :updating="true" :form="form" @submit.prevent="form.patch(route('pacienteDiagnostico.update',form.id),{preserveScroll:true})"/>
                         </div>
                     </div>
                     

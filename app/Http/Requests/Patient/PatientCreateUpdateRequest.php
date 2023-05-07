@@ -31,13 +31,13 @@ class PatientCreateUpdateRequest extends FormRequest
             'genre' => ['required','max:255'],
             'branch_office_id' => ['required'],
             'email' => ['required','email','max:255',Rule::unique('patients','email')->ignore($this->paciente?->id)],
-            'phone' => 'required|numeric',
-            'second_phone' => 'nullable',
+            'phone' => 'required|regex:/^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/',
+            'second_phone' => 'nullable|regex:/^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/',
             'address' => 'required|max:5000',
             'occupation' => 'required',
             'birthdate' => 'required|date',
             'contact_name' => 'nullable|max:255',
-            'contact_phone' => 'nullable',
+            'contact_phone' => 'nullable|regex:/^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/',
             'contact_email' => ['nullable','email','max:255',Rule::unique('patients','contact_email')->ignore($this->paciente?->id)]
         ];
     }

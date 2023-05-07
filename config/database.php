@@ -61,6 +61,12 @@ return [
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
+            /*probando spatie backup*/
+            'dump' => [
+                'dump_binary_path' => 'C:\Program Files\MySQL\MySQL Server 8.0\bin',
+                'use_single_transaction',
+                'timeout' => 60 * 5,
+            ],
         ],
 
         'pgsql' => [
@@ -94,7 +100,7 @@ return [
         ],
 
     ],
-
+	
     /*
     |--------------------------------------------------------------------------
     | Migration Repository Table

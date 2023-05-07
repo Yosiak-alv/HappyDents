@@ -42,23 +42,14 @@
                                 required
                             >
                                 <option  v-for="value in treatments" :value="value.id">
-                                    {{value.name}}
+                                    {{value.name}}, Precio : {{ value.price }}
                                 </option>
                             </select>
                             <InputError class="mt-2" :message="form.errors.system_id" />
                     </div>
                     <div class="mb-3">
-                        <label for="payment" class="form-label">Pago</label>
-                        <input type="number" id="payment" min="0"  step=".01"
-                            class="form-control rounded"
-                            v-model="form.payment"
-                            required
-                        >
-                        <InputError class="mt-2" :message="form.errors.payment" />
-                    </div>
-                    <div class="mb-3">
                         <label for="date" class="form-label">Fecha</label>
-                        <input type="date" id="date"
+                        <input type="datetime-local" id="date"
                                 class="form-control rounded"
                             v-model="form.date" required>
                         <InputError class="mt-2" :message="form.errors.date" />

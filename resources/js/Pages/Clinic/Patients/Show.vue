@@ -40,57 +40,47 @@
     <HappyDentsLayout>
         <Head title="Pacientes"/>
         <div class="container">
-            <div class="row ">
+            <div class="row py-5">
                 <div class="col-md-10 offset-md-1 p-5 bg-light border rounded-3">
                     <CreateEditPatient :branch_offices="branch_offices" :patient="props.patient"/>
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-md-10 offset-md-1 p-5 bg-light border rounded-3">
+                <div class="col-md-12 p-5 bg-light border rounded-3">
                     <!--falta las relaciones mostrarlas y ya -->
                     <IndexDiagnostics :patient_diagnostics="patient.diagnostics" :patient_id="props.patient.id"/>
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-md-10 offset-md-1 p-5 bg-light border rounded-3">
-                     <!--falta las relaciones mostrarlas y ya -->
-                     <div class="row">
-                        <div class="col-md-12">
-                            <IndexOdontogram :patient_detentions="patient.detentions" :patient_id="props.patient.id"/>
-                        </div>
-                        
-                     </div>
+                <div class="col-md-12 p-5 bg-light border rounded-3">
+                    <!--falta las relaciones mostrarlas y ya -->
+                    <IndexOdontogram :patient_detentions="patient.detentions" :patient_id="props.patient.id"/>
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-md-10 offset-md-1 p-5 bg-light border rounded-3">
+                <div class="col-md-12 p-5 bg-light border rounded-3">
                      <!--falta las relaciones mostrarlas y ya -->
                      <IndexHospitalization :patient_hospitalizations="patient.hospitalizations" :patient_id="props.patient.id"/>
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-md-10 offset-md-1 p-5 bg-light border rounded-3">
+                <div class="col-md-12 p-5 bg-light border rounded-3">
                      <!--falta las relaciones mostrarlas y ya -->
                     <IndexVisit :patient_visits="patient.visits" :patient_id="props.patient.id"/>
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-md-10 offset-md-1 p-5 bg-light border rounded-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!--falta las relaciones mostrarlas y ya -->
-                            <IndexSystem :patient_systems="patient.systems" :patient_id="props.patient.id"/>
-                        </div>
-                    </div>
+                <div class="col-md-12 p-5 bg-light border rounded-3">
+                     <!--falta las relaciones mostrarlas y ya -->
+                     <IndexSystem :patient_systems="patient.systems" :patient_id="props.patient.id"/>
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-md-10 offset-md-1 p-5 bg-light border rounded-3 mb-5" >
+                <div class="col-md-12 p-5 bg-light border rounded-3 mb-5" >
                      <!--falta las relaciones mostrarlas y ya -->
                      <IndexFamilyBack :patient_family_backgrounds="patient.family_backgrounds" :patient_id="props.patient.id"/>
                 </div>
             </div>
-            
         </div>
     </HappyDentsLayout>
 

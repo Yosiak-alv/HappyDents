@@ -1,9 +1,6 @@
 <script setup>
-    import {Link} from '@inertiajs/vue3';  
-    //import InputLabel from "@/Components/InputLabel.vue";
-    //import InputError from '@/Components/InputError.vue';
-    //import PrimaryButton from '@/Components/PrimaryButton.vue';
     import InputError from "@/Components/InputError.vue";    
+    
     defineProps({
         form: {
             type: Object,
@@ -16,10 +13,6 @@
         },
         detentions:{
             type:Object,
-            required:true
-        },
-        patient_id:{
-            type:Number,
             required:true
         }
     });
@@ -38,33 +31,28 @@
             <form @submit.prevent="$emit('submit.prevent')" class="mt-4">
                 <div class="row">
                     <div class="mb-3">
-                        <label for="detention_id" class="form-label">Diente</label>
-                        <select multiple
-                            id="detention_id" 
-                            class="form-select rounded" 
-                            v-model="form.detention_id" 
-                            required
-                        >
-                            <option  v-for="detention in detentions " :value="detention.id">
-                                {{detention.name}}
-                            </option>
-                        </select>
+                        <div class="row">
+                            
+                            <div class="col-6" v-for="(detention,index) in detentions" :key="detention.id">
+                                
+                                <input type="checkbox" :value="detention.id" v-model="form.detention_id"> {{detention.name}} 
+                                <textarea id="condition"
+                                    class="form-control rounded"
+                                    v-model="form.condition[detention.id]"
+                                ></textarea> 
+                                <InputError class="mt-2" :message="form.errors.condition" />
+                            </div>
+                        </div>
                         <InputError class="mt-2" :message="form.errors.detention_id" />
                     </div>
-                    <div class="col-6 text-left">
-                        <div v-if="updating">
-                            <Link :href="route('pacienteOdontograma.remove',patient_id)" as="button"  method="delete" class="btn btn-danger mt-3 ">Eliminar el Odontograma</Link>
-                        </div>
-                        <div v-else></div>
-                        
-                    </div>
-                    <div class="col-6 text-right">
+                   
+                    <div class="col-12 text-right">
                         <button class="btn btn-primary mt-3 " :disabled="form.processing" >{{ updating ? 'Actualizar' : 'Crear' }}</button>
-                        
                     </div>
                    
                 </div>
             </form>
+           
         </div>
     </div>
     

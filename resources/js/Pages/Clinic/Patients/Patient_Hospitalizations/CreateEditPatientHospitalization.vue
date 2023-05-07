@@ -23,7 +23,7 @@
 <template>
     <HappyDentsLayout>
         <Head title="Paciente-Hospitalizacion"/>
-            <div class="container">
+            <div class="container position-absolute top-50 start-50 translate-middle">
                 <div class="row">
                     <div v-if="props.patient_hospitalization == null">
                         <div class="col-md-12 text-center mb-4">

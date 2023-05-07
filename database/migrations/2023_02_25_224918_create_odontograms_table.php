@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('odontograms', function (Blueprint $table) {
-            $table->foreignIdFor(\App\Models\clinic\Detention::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
-            $table->foreignIdFor(\App\Models\clinic\Patient::class)->nullable(false)->constrained()->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignIdFor(\App\Models\clinic\Detention::class)->nullable(false)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\clinic\Patient::class)->nullable(false)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->text('condition')->nullable();
 
         });
     }

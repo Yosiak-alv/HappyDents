@@ -6,6 +6,7 @@ import HappyDentsLayout from "@/Layouts/HappyDentsLayout.vue";
 import {ref, watch} from "vue";
 import {debounce} from "lodash";
 import Paginator from "@/Components/Paginator.vue";
+
 //vars
 const props = defineProps({
     patients:{
@@ -23,16 +24,14 @@ const search = ref(props.filters.search);
 watch(search, debounce(value => {
     router.get('/pacientes',{search:value},{preserveState:true,replace:true});
 },500));
-
 </script>
-
 
 <template>
     <HappyDentsLayout>
         <Head title="Pacientes"/>
         <div class="container">
-            <div class="row py-2  ">
-                <div class="p-5 bg-blue-200  border rounded-3">
+            <div class="row mt-5 mb-4">
+                <div class="p-5 bg-light border rounded-3">
                     <div class="col-md-10 offset-md-1 ">
                         <h1 class="h1">Pacientes</h1>
                     </div>
@@ -43,10 +42,12 @@ watch(search, debounce(value => {
                             </div>
                             <div class="col-md-6 text-right">
                                 <Link :href="route('pacientes.create')" as="button" method="get" class="btn btn-primary">Crear Nuevo Paciente</Link>
+                                <Link :href="route('pacientes.deleteIndex',1)" as="button" method="get" class="btn btn-danger ml-2">Pacientes Eliminados</Link>
+
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-10 offset-md-1 bg-white">
+                    <div class="col-md-10 offset-md-1">
                         <table class="table mt-3">
                             <thead>
                                 <tr>
@@ -66,18 +67,14 @@ watch(search, debounce(value => {
                                     <td>
                                         <Link :href="route('pacientes.show',patient.id)" as="button" method="get" class="btn btn-outline-success">Ver más</Link>
                                     </td>
-
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-
                     <div class="col-12">
                         <Paginator :links="patients.links"/>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </HappyDentsLayout>
