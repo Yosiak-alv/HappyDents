@@ -195,3 +195,7 @@
 1683477843-8271-1262446730,1683477843.7622,GET,/paciente/hospitalizacion/6/edit,"App\Http\Controllers\Clinic\PatientHospitalizationController@edit",200,138.15808296204,request
 1683477848-2270-645972014,1683477848.1622,GET,/paciente/hospitalizacion/4/edit,"App\Http\Controllers\Clinic\PatientHospitalizationController@edit",200,138.86499404907,request
 1683478050-3355-67107131,1683478050.2507,GET,/paciente/hospitalizacion/1,"App\Http\Controllers\Clinic\PatientHospitalizationController@create",200,175.29988288879,request
+1683478169-6446-463414207,1683478169.5786,GET,/paciente/sistema/1/edit,"App\Http\Controllers\Clinic\PatientSystemController@edit",200,143.40400695801,request
+1683478304-5222-785194403,1683478304.4354,GET,/paciente/sistema/1/edit,"App\Http\Controllers\Clinic\PatientSystemController@edit",200,180.20296096802,request
+1683479146-3542-1767835738,1683479146.2695,GET,/paciente/antecedentes-familiares/19/edit,"App\Http\Controllers\Clinic\PatientFamilyBackgroundController@edit",200,181.09202384949,request
+1683479385-3383-2075398510,1683479385.2522,GET,/paciente/antecedentes-familiares/1,"App\Http\Controllers\Clinic\PatientFamilyBackgroundController@create",200,186.96784973145,request
