@@ -17,7 +17,7 @@ class PatientSystemController extends Controller
         if(request()->user()->cannot('createSystemPatient',[System::class,$id])){
             abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
         }
-        
+
         return Inertia::render('Clinic/Patients/Patient_Systems/CreateEditPatientSystem',[
             'systems'=> System::all(['id','name']),
             'patient' => Patient::select(['id','name'])->get()->find($id)
@@ -28,14 +28,14 @@ class PatientSystemController extends Controller
         if(request()->user()->cannot('createSystemPatient',[System::class,$id])){
             abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
         }
-        
+
         $paciente =  Patient::find($id);
 
         $paciente->systems()->attach($request->validatedSystemId());
 
         return redirect()->route('pacientes.show',$id)->with([
             'type' => 'floating',
-            'message' => 'Sistema Inmunologico Creado Satisfactoriamente!.',
+            'message' => 'Registro del Sistema Biológico Creado Satisfactoriamente!.',
             'level' => 'success'
 		]);
     }
@@ -44,7 +44,7 @@ class PatientSystemController extends Controller
         if(request()->user()->cannot('updateSystemPatient',System::class)){
             abort(403,'THIS ACTION IS UNAUTHORIZED. '); // es igual $this->authorize()
         }
-        
+
         $paciente = Patient::select(['id','name'])->get()->find($id);
         //dd($paciente->systems()->select(['id','condition'])->get()->pluck(['id','condition']));
         return Inertia::render('Clinic/Patients/Patient_Systems/CreateEditPatientSystem',[
@@ -62,7 +62,7 @@ class PatientSystemController extends Controller
         $paciente = Patient::find($id);
 
         $conditions = collect([]);
-        
+
         foreach ($request->conditions() as $index => $condition) {
             if ($request->validatedSystemId()->contains($index)) {
                 $conditions->put($index, [ 'condition' => $condition ]);
@@ -72,7 +72,7 @@ class PatientSystemController extends Controller
 
         return to_route('pacientes.show',$id)->with([
             'type' => 'floating',
-            'message' => 'Sistema Inmunologico Editado Satisfactoriamente!.',
+            'message' => 'Registro del Sistema Biológico Editado Satisfactoriamente!.',
             'level' => 'success'
 		]);
     }
@@ -88,9 +88,9 @@ class PatientSystemController extends Controller
 
         return to_route('pacientes.show',$id)->with([
             'type' => 'floating',
-            'message' => 'Sistema Inmunologico Eliminado Satisfactoriamente!.',
+            'message' => 'Registro del Sistema Biológico Eliminado Satisfactoriamente!.',
             'level' => 'success'
 		]);
-        
+
     }
 }

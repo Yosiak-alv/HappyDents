@@ -26,7 +26,7 @@
     //---Modal Section----
     const confirmingAntecedentesDeletion = ref(false);
     const selectedAntecedentes = ref(0);
-    
+
     const confirmAntecedentesDeletion = (id) => {
         confirmingAntecedentesDeletion.value = true;
         selectedAntecedentes.value = id;
@@ -35,7 +35,7 @@
     const closeModal = () => {
         confirmingAntecedentesDeletion.value = false;
     };
-    
+
     const deleteAntecedentes = () => {
         router.delete(route('pacienteAntecedentesFamiliares.destroy',selectedAntecedentes.value),{
             preserveScroll: true,
@@ -66,7 +66,7 @@
                 <tr>
                     <th scope="col">Relacion</th>
                     <th scope="col">Condicion</th>
-                    <th scope="col">Sistema Inmunologico</th>
+                    <th scope="col">Sistema Biológico</th>
                     <th scope="col" class="text-center" v-if="usePage().props.auth.user.role.type == 'administrador'
                     || usePage().props.auth.user.role.type == 'doctor'">Opciones</th>
                 </tr>
@@ -79,9 +79,9 @@
                     <td class="text-center" v-if="usePage().props.auth.user.role.type == 'administrador'
                     || usePage().props.auth.user.role.type == 'doctor'">
                         <Link :href="route('pacienteAntecedentesFamiliares.edit', family_background.id)" as="button"  class="btn btn-outline-success">Editar</Link>
-                        <button @click="confirmAntecedentesDeletion(family_background.id)" class="btn btn-outline-danger ml-3">Eliminar</button>                        
+                        <button @click="confirmAntecedentesDeletion(family_background.id)" class="btn btn-outline-danger ml-3">Eliminar</button>
                     </td>
-                
+
                 </tr>
             </tbody>
         </table>
@@ -105,8 +105,8 @@
                     </h4>
                 </div>
                 <div class="col-12">
-                    <p class="p p-4"> 
-                        Si lo Elimina, el registro se borrara PERMANETEMENTE, sin posibilidad de 
+                    <p class="p p-4">
+                        Si lo Elimina, el registro se borrara PERMANETEMENTE, sin posibilidad de
                         recuperacion de la informacion del registro, desea continuar ?
                     </p>
                 </div>

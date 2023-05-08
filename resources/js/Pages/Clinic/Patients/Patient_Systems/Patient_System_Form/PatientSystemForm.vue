@@ -1,9 +1,9 @@
 <script setup>
-    import {Link,usePage,router} from '@inertiajs/vue3';  
+    import {Link,usePage,router} from '@inertiajs/vue3';
     //import InputLabel from "@/Components/InputLabel.vue";
     //import InputError from '@/Components/InputError.vue';
     //import PrimaryButton from '@/Components/PrimaryButton.vue';
-    import InputError from "@/Components/InputError.vue";    
+    import InputError from "@/Components/InputError.vue";
     defineProps({
         form: {
             type: Object,
@@ -25,9 +25,9 @@
     <div class="container">
         <div class="row">
             <header>
-                <h2 class="h3">{{ updating ? 'Editar Sistema Inmunologico del Paciente' : 'Crear nuevo Sistema Unmunologico del Paciente' }}</h2>
+                <h2 class="h3">{{ updating ? 'Editar Sistema Biológico del Paciente' : 'Crear nuevo Sistema Biológico del Paciente' }}</h2>
                 <p class="p">
-                    {{ updating ? 'Edite la Informacion del Sistema Inmunologico de un Paciente' : 'Crear nueva Informacion para el Sistema Inmunologico de un Paciente' }}
+                    {{ updating ? 'Edite la Informacion del Sistema Biológico de un Paciente' : 'Crear nueva Informacion para el Sistema Biológico de un Paciente' }}
                 </p>
             </header>
             <form @submit.prevent="$emit('submit.prevent')" class="mt-4">
@@ -39,7 +39,7 @@
                                 <textarea id="condition"
                                     class="form-control rounded"
                                     v-model="form.condition[system.id]"
-                                ></textarea> 
+                                ></textarea>
                                 <InputError class="mt-2" :message="form.errors.condition" />
                             </div>
                         </div>
@@ -50,8 +50,8 @@
                     </div>
                 </div>
             </form>
-            
+
         </div>
     </div>
-    
+
 </template>

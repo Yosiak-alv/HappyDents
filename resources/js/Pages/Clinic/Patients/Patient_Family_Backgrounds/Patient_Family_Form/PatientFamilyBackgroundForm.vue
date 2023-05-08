@@ -1,9 +1,9 @@
 <script setup>
-    //import { Link} from '@inertiajs/vue3';  
+    //import { Link} from '@inertiajs/vue3';
     //import InputLabel from "@/Components/InputLabel.vue";
     //import InputError from '@/Components/InputError.vue';
     //import PrimaryButton from '@/Components/PrimaryButton.vue';
-    import InputError from "@/Components/InputError.vue";    
+    import InputError from "@/Components/InputError.vue";
     defineProps({
         form: {
             type: Object,
@@ -35,8 +35,8 @@
                 <div class="row">
                     <div class="mb-3">
                         <label for="relationship" class="form-label">Relacion</label>
-                        <input type="text" id="relationship"  
-                            class="form-control rounded" 
+                        <input type="text" id="relationship"
+                            class="form-control rounded"
                             v-model="form.relationship"
                             required
                         >
@@ -45,18 +45,18 @@
                     <div class="mb-3">
                         <label for="condition" class="form-label">Condicion</label>
                         <textarea id="condition"
-                            class="form-control rounded" 
+                            class="form-control rounded"
                             v-model="form.condition"
                             required
                         ></textarea>
                         <InputError class="mt-2" :message="form.errors.condition" />
                     </div>
                     <div class="mb-3">
-                        <label for="system_id" class="form-label">Sistema Inmunologico</label>
+                        <label for="system_id" class="form-label">Sistema Biológico</label>
                             <select
-                                id="system_id" 
-                                class="form-select rounded" 
-                                v-model="form.system_id" 
+                                id="system_id"
+                                class="form-select rounded"
+                                v-model="form.system_id"
                                 required
                             >
                                 <option  v-for="value in systems" :value="value.id">
@@ -72,5 +72,5 @@
             </form>
         </div>
     </div>
-    
+
 </template>

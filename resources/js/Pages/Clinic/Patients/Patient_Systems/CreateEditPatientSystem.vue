@@ -36,7 +36,7 @@
 
     //---Modal Section----
     const confirmingSystemDeletion = ref(false);
-    
+
     const confirmSystemDeletion = () => {
         confirmingSystemDeletion.value = true;
     };
@@ -44,7 +44,7 @@
     const closeModal = () => {
         confirmingSystemDeletion.value = false;
     };
-    
+
     const deleteSystem = () => {
         router.delete(route('pacienteSistema.remove',props.patient.id),{
             preserveScroll: true,
@@ -54,26 +54,28 @@
     };
 </script>
 <template>
+    <p class="h4">Paciente:</p>
+               
     <HappyDentsLayout>
         <Head title="Paciente-Sistema"/>
-        <div class="container position-absolute top-50 start-50 translate-middle">
+        <div class="container-fluid overflow-auto h-100">
             <div class="col-md-12 text-center mb-4">
                 <p class="h4">Paciente:</p>
                 <p class="p">{{ patient.name}}</p>
             </div>
-            <div class="col-md-10 offset-md-1 p-5 bg-light border rounded-3">
+            <div class="col-md-15 offset-md-1 p-1 bg-light border rounded-3 mx-0">
                 <PatientSystemForm :updating="(props.patient_systems === undefined ? false:true)" :patient_id="props.patient.id"
-                :form="form" :systems="props.systems" @submit.prevent="(props.patient_systems === undefined ? store() : update())"/>  
+                :form="form" :systems="props.systems" @submit.prevent="(props.patient_systems === undefined ? store() : update())"/>
                 <div class="col-12 text-right">
                     <div v-if="props.patient_systems != null">
                         <button @click="confirmSystemDeletion()" class="btn btn-danger mt-3">
-                            Eliminar el Sistema Inmunologico del Paciente
+                            Eliminar el Sistema Biológico del Paciente
                         </button>
                     </div>
                     <div v-else></div>
-                </div>       
-            </div>  
-        </div>   
+                </div>
+            </div>
+        </div>
     </HappyDentsLayout>
 
     <Modal :show="confirmingSystemDeletion" @close="closeModal">
@@ -85,9 +87,9 @@
                     </h4>
                 </div>
                 <div class="col-12">
-                    <p class="p p-4"> 
+                    <p class="p p-4">
                         Si lo Elimina, el registro siempre permanecera en el sistema con estado inactivo, considere
-                        que otros registros que utilizen este, apareceran vacios, esperando su edicion o restauracion 
+                        que otros registros que utilizen este, apareceran vacios, esperando su edicion o restauracion
                         de este registro.
                     </p>
                 </div>
