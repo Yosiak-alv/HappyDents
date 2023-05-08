@@ -55,8 +55,6 @@
 </script>
 
 <template>
-    <p class="h4">Paciente:</p>
-                <p class="p">{{patient.name}}</p>
                 <HappyDentsLayout>
   <Head title="Paciente-Odontograma"/>
   <div class="container-fluid overflow-auto h-100">
