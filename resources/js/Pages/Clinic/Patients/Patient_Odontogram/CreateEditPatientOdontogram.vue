@@ -55,7 +55,9 @@
 </script>
 
 <template>
-                <HappyDentsLayout>
+    <p class="h4">:</p>
+
+    <HappyDentsLayout>
   <Head title="Paciente-Odontograma"/>
   <div class="container-fluid overflow-auto h-100">
     <div class="row">
@@ -64,8 +66,8 @@
         <p class="p">{{patient.name}}</p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-15 offset-md-1 p-1 bg-light border rounded-3">
+    <div class="row pb-5">
+      <div class="col-md-15 offset-md-1 p-1 bg-light border rounded-3 mx-0">
         <PatientOdontogramForm :updating="(props.selected_patient_odontogram_detentions === undefined ? false:true)"
           :form="form" :detentions="props.detentions" @submit.prevent="(props.selected_patient_odontogram_detentions === undefined ? store() : update())"/>
         <div class="col-md-12 text-right">
@@ -78,6 +80,7 @@
     </div>
   </div>
 </HappyDentsLayout>
+
 
 
 
