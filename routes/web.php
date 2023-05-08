@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\clinic\TreatmentController;
+use App\Http\Controllers\Clinic\TreatmentController;
 use App\Http\Controllers\BackupController;
 use App\Http\Controllers\Clinic\PatientController;
 use App\Http\Controllers\Clinic\PatientDiagnosticController;
@@ -9,7 +9,7 @@ use App\Http\Controllers\Clinic\PatientHospitalizationController;
 use App\Http\Controllers\Clinic\PatientOdontogramController;
 use App\Http\Controllers\Clinic\PatientSystemController;
 use App\Http\Controllers\Clinic\PatientVisitController;
-use App\Http\Controllers\clinic\VisitController;
+use App\Http\Controllers\Clinic\VisitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Models\clinic\Patient;
