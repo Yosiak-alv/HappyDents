@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\clinic;
+namespace App\Http\Controllers\Clinic;
 
 use App\Http\Requests\TreatmentCreateEditRequest;
 use App\Models\clinic\Treatment;
