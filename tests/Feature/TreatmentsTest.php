@@ -11,7 +11,7 @@ beforeEach(function () {
     $this->user = User::factory()->create();
 });
 
-it('has treatments page', function () {
+it('Controlador de Tratanientos Funcional', function () {
     $response = $this->get('/tratamientos');
 
     $response->assertStatus(302);
@@ -29,7 +29,7 @@ it('Si Tratamiento No Existe Retorna Mensaje', function () {
     $response->assertStatus(404);
 });
 
-it('Permite Ver Datos de Tratamiento', function () {
+it('Si Tratamiento no Existe Retorna Mensaje', function () {
     $response = $this->actingAs($this->user)->get('/tratamientos/1/edit');
 
     $response->assertStatus(404);

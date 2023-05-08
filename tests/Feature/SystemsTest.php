@@ -10,7 +10,7 @@ beforeEach(function () {
     $this->user = User::factory()->create();
 });
 
-it('has systems page', function () {
+it('Comprueba que existe la Pagina de Sistemas en Expediente de Paciente', function () {
     $response = $this->get('/pacientes/1');
 
     $response->assertStatus(302);

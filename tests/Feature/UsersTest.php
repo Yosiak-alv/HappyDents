@@ -10,7 +10,7 @@ beforeEach(function () {
     $this->user = User::factory()->create();
 });
 
-it('has users page', function () {
+it('Controlador de Usuarios Funcional', function () {
     $response = $this->get('/users');
 
     $response->assertStatus(302);

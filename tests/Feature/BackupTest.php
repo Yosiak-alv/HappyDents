@@ -9,7 +9,7 @@ beforeEach(function () {
     $this->user = User::factory()->create();
 });
 
-it('has backup page', function () {
+it('Permite Descargar Respaldo', function () {
     $response = $this->get('/backupss');
 
     $response->assertStatus(302);

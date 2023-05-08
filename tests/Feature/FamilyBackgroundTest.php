@@ -10,7 +10,7 @@ beforeEach(function () {
     $this->user = User::factory()->create();
 });
 
-it('has familybackground page', function () {
+it('Comprobar si Existe Pagina de Antecedentes en Expediente de Paciente', function () {
     $response = $this->get('/paciente/antecedentes-familiares/19/edit');
 
     $response->assertStatus(302);

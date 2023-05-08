@@ -11,7 +11,7 @@ beforeEach(function () {
     $this->user = User::factory()->create();
 });
 
-it('has visits page', function () {
+it('Controlador de Visitas Funcional', function () {
     $response = $this->get('/visitas');
 
     $response->assertStatus(302);
@@ -29,7 +29,7 @@ it('Si Visita No Existe Retorna Mensaje', function () {
     $response->assertStatus(404);
 });
 
-it('Permite Ver Datos de Tratamiento', function () {
+it('Permite Ver Datos de Visita Registrada', function () {
     $response = $this->actingAs($this->user)->get('/visitas/1/edit');
 
     $response->assertStatus(404);
