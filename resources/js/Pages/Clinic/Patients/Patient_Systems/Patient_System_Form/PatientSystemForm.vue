@@ -33,12 +33,13 @@
             <form @submit.prevent="$emit('submit.prevent')" class="mt-4">
                 <div class="row">
                     <div class="mb-3">
-                        <div class="row">
+                        <div class="row" style="overflow-y: scroll; height:400px;">
                             <div class="col-6" v-for="(system,index) in systems" :key="system.id">
                                 <input type="checkbox" :value="system.id" v-model="form.system_id"> {{system.name}}
                                 <textarea id="condition"
                                     class="form-control rounded"
                                     v-model="form.condition[system.id]"
+                                    rows="3"
                                 ></textarea> 
                                 <InputError class="mt-2" :message="form.errors.condition" />
                             </div>
