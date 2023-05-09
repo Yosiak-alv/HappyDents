@@ -31,8 +31,15 @@ class PatientSystemController extends Controller
         
         $paciente =  Patient::find($id);
 
-        $paciente->systems()->attach($request->validatedSystemId());
-
+        $conditions = collect([]);
+        
+        foreach ($request->conditions() as $index => $condition) {
+            if ($request->validatedSystemId()->contains($index)) {
+                $conditions->put($index, [ 'condition' => $condition ]);
+            }
+        }
+        $paciente->systems()->sync($conditions);
+        
         return redirect()->route('pacientes.show',$id)->with([
             'type' => 'floating',
             'message' => 'Sistema Inmunologico Creado Satisfactoriamente!.',
