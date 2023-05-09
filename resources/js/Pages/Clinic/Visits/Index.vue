@@ -87,13 +87,21 @@
                                     <td>{{visit.payment}}</td>
                                     <td>{{visit.date}}</td>
                                     <td>
-                                        <Link :href="route('visitas.edit',visit.id)" as="button" method="get" class="btn btn-outline-success">Editar</Link>
+                                        <Link v-if="visit.patient != null">
+                                            <Link  v-if="visit.treatment != null"
+                                            :href="route('visitas.edit',visit.id)" as="button" method="get" class="btn btn-outline-success">Editar</Link>
+                                        </Link>
+                                    
+                                        <button v-if="visit.treatment != null">
+                                            <button v-if="visit.patient != null" 
+                                             @click="confirmVisitDeletion(visit.id)" class="btn btn-outline-danger ml-3">Eliminar</button>
+                                        </button>
                                         
-                                        <button @click="confirmVisitDeletion(visit.id)" class="btn btn-outline-danger ml-3">Eliminar</button>
-                                        <!--  revisar a -->
-                                        <a v-if="visit.patient != null " 
-                                        :href="route('visitas.InvoicePDF',visit.id)"  class="btn btn-outline-secondary ml-3"><i class="bi bi-receipt"></i></a>
-
+                                        <!--revisar a-->
+                                        <a v-if="visit.treatment != null">
+                                            <a v-if="visit.patient != null" 
+                                            :href="route('visitas.InvoicePDF',visit.id)"  class="btn btn-outline-secondary ml-3"><i class="bi bi-receipt"></i></a>
+                                        </a>
                                     </td>
                                 </tr>
                             </tbody>
