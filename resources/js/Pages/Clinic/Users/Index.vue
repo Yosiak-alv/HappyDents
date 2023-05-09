@@ -24,7 +24,7 @@
     <HappyDentsLayout>
         <Head title="Usuarios"/>
         <div class="container">
-            <div class="row mt-5">
+            <div class="row mt-5 mb-5">
                 <div class="p-5 bg-light border rounded-3 " >
                     <div class="col-md-10 offset-md-1">
                         <h1 class="h1">Usuarios</h1>
@@ -50,7 +50,7 @@
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
-                                <tr v-for="user in users.data" :key="user.id">
+                                <tr v-for="user in users" :key="user.id">
                                     <td>{{user.name}}</td>
                                     <td>{{user.email}}</td>
                                     <td>{{user.role.type}}</td>
