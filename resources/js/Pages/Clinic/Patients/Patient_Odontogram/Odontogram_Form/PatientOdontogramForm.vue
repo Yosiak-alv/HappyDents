@@ -31,7 +31,7 @@
             <form @submit.prevent="$emit('submit.prevent')" class="mt-4">
                 <div class="row">
                     <div class="mb-3">
-                        <div class="row" style="overflow-y: scroll; height:400px;">
+                        <div class="row overflow-y-scroll mh-100" style="height: 300px;">
                             <div class="col-6" v-for="(detention,index) in detentions" :key="detention.id">
                                 
                                 <input type="checkbox" :value="detention.id" v-model="form.detention_id"> {{detention.name}} 
