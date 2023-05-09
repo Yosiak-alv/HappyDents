@@ -14,13 +14,12 @@ class UserController extends Controller
     public function __construct()
     {
         $this->authorizeResource(User::class,'user'); //aplica a todos los metodos resource
-        //su respectivo $this->authorize('metodd', parametro);
     }
 
     public function index()
     {
         return Inertia::render('Clinic/Users/Index',[
-            'users' => User::with('role')->filter(request(['search']))->paginate(6)->withQueryString(),
+            'users' => User::with('role')->latest('created_at')->get(),
         ]);
     }
 

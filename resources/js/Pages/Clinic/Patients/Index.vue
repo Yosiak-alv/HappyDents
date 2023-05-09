@@ -1,7 +1,7 @@
 <script setup>
 //import GuestLayout from "@/Layouts/GuestLayout.vue";
 //import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Link,Head,router } from '@inertiajs/vue3';
+import { Link,Head,router,usePage } from '@inertiajs/vue3';
 import HappyDentsLayout from "@/Layouts/HappyDentsLayout.vue";
 import {ref, watch} from "vue";
 import {debounce} from "lodash";
@@ -41,7 +41,8 @@ watch(search, debounce(value => {
                                 <input type="text" id="search" v-model="search" class="rounded-2" placeholder="Buscar">
                             </div>
                             <div class="col-md-6 text-right">
-                                <Link :href="route('pacientes.create')" as="button" method="get" class="btn btn-primary">Crear Nuevo Paciente</Link>
+                                <Link :href="route('pacientes.create')" as="button" method="get" class="btn btn-primary"
+                                v-if="usePage().props.auth.user.role.type != 'asistente dental'">Crear Nuevo Paciente</Link>
                                 <Link :href="route('pacientes.deleteIndex',1)" as="button" method="get" class="btn btn-danger ml-2">Pacientes Eliminados</Link>
 
                             </div>
