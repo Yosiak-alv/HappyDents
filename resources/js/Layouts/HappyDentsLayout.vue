@@ -89,7 +89,18 @@
     <flash-message />
     <footer class="text-center text-white p-4" style="background-color: #00BFFF;">
         <p>&copy; 2023 Happy Dents. All rights reserved.</p>
-        <Link href="#" class="mx-3">Manual de Usuario</Link>
+        <a v-if="usePage().props.auth.user.role.type === 'administrador'" href="
+            https://drive.google.com/file/d/15Bacjiy7ETIwPoGW2vIlgQKN0B4VmeBR/view?usp=sharing"
+        class="mx-3">Manual de Usuario</a>
+        <a v-else-if="usePage().props.auth.user.role.type === 'doctor'" href="
+            https://drive.google.com/file/d/1ripzKV2nY8u7-0sOxMtekxdXSfU0y1vy/view"
+        class="mx-3">Manual de Usuario</a>
+        <a v-else-if="usePage().props.auth.user.role.type === 'asistente dental'" href="
+            https://drive.google.com/file/d/1nJynruiSaNBdX3jUKZRcKHxlS7w18n3z/view"
+        class="mx-3">Manual de Usuario</a>
+        <a v-else-if="usePage().props.auth.user.role.type === 'recepcionista'" href="
+            https://drive.google.com/file/d/1MTyYQfPpNZUKkrzJ4AV_KZe1g3ZKQAhR/view"
+        class="mx-3">Manual de Usuario</a>
     </footer>
 </template>
 
